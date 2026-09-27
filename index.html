@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Proposta Ronald Costa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+:root{color-scheme:dark;
+  --bg:#0C0624; --surface:#160C38; --surface-2:#1D1147; --ink:#F4F1FF; --muted:#B7AED9; --line:#33266E;
+  --cobalt:#1F6BFF; --cobalt-ink:#FFFFFF; --cobalt-soft:#1F6BFF24; --sky:#3EB5FF;
+  --purple:#3A1C71; --purple-d:#1E0F4B; --orange:#FF8A00; --yellow:#FFC247;
+  --night:#0A0420; --night-2:#150A36; --on-night:#F4F1FF; --on-night-muted:#B7AED9;
+  --wa:#FF8A00; --wa-ink:#1A0B00; --amber:#FFC247; --amber-ink:#2A1A00;
+  --good:#3EB5FF; --good-soft:#3EB5FF14; --warn:#FF8A00; --warn-soft:#FF8A0014;
+  --grad:linear-gradient(135deg,#3EB5FF,#1F6BFF 40%,#3A1C71 70%,#FF8A00);
+  --grad-soft:linear-gradient(135deg,#3EB5FF88,#1F6BFF44 35%,#3A1C7166 65%,#FF8A0088);
+  --shadow:0 20px 50px -20px #000c;
+  --display:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Manrope",ui-sans-serif,system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--body);padding:0 16px;padding-block:0 104px}
+.wrap{max-width:960px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.hero>*,.sec>*{min-width:0}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:700 .72rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt)}
+.muted{color:var(--muted)}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,34px);display:grid;gap:20px}
+.sec-head{display:grid;gap:8px;max-width:60ch}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font:700 1rem var(--body);padding:15px 20px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;white-space:nowrap;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.plan:focus-visible,summary:focus-visible,.copy:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.btn.wa{background:var(--wa);color:var(--wa-ink);box-shadow:0 8px 22px rgba(29,170,87,.35)}
+.btn.line{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- top bar ---------- */
+.topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 16px;padding-block:18px 0;font-size:.8rem;color:var(--muted)}
+.topbar>div{display:grid;gap:2px}
+.topbar b{font:800 .95rem var(--display);color:var(--ink)}
+.topbar .tb-r{text-align:right}
+.topbar #validity{display:block}
+@media (max-width:560px){.topbar .tb-r{text-align:left}}
+.lead2{color:var(--on-night-muted);max-width:52ch;font-size:.98rem}
+.why{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:start}
+.why ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.why ul li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.why ul li::before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center;font:800 .72rem var(--display);margin-top:1px}
+.sign{display:flex;align-items:center;gap:12px;margin-top:6px}
+.sign b{display:block;font-family:var(--display)}
+.sign span{font-size:.85rem;color:var(--muted)}
+.final-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.final .btn.line{color:#fff;border-color:#ffffff80}
+.footer{display:grid;gap:4px;text-align:center;font-size:.88rem;color:var(--muted);padding-block:10px 4px}
+.footer b{font:800 1rem var(--display);color:var(--ink)}
+.footer a{color:var(--cobalt)}
+@media (max-width:860px){.why{grid-template-columns:1fr}}
+
+/* ---------- HERO ---------- */
+.hero{background:radial-gradient(120% 90% at 85% 10%,#2D5BFF55 0,transparent 55%),radial-gradient(80% 70% at 0% 100%,#1DAA5722 0,transparent 60%),var(--night);color:var(--on-night);border-radius:28px;padding:clamp(22px,5vw,44px);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,40px);align-items:center;overflow:hidden;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(180deg,#000 0,transparent 80%);pointer-events:none}
+.hero>*{position:relative}
+.hero-copy{display:grid;gap:18px}
+.who{display:flex;align-items:center;gap:14px}
+.photo{width:64px;height:64px;border-radius:50%;background-size:cover;background-position:center 20%;border:3px solid #2D5BFF;box-shadow:0 0 0 4px #2D5BFF33;position:relative;flex:none}
+.photo::after{content:"";position:absolute;right:0;bottom:2px;width:14px;height:14px;border-radius:50%;background:var(--wa);border:3px solid var(--night)}
+.who b{display:block;font-family:var(--display);font-size:1.15rem}
+.who span{font-size:.85rem;color:var(--on-night-muted)}
+.hello{font:600 .98rem var(--body);color:#C9D5FF;border-left:3px solid #2D5BFF;padding-left:12px}
+.lbl-short{display:none}
+.hero h1{font-size:clamp(1.9rem,4.8vw,2.8rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 mark{background:none;color:#8FB0FF}
+.hero p.lead{color:var(--on-night-muted);font-size:1.05rem;max-width:46ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero .btn.line{color:var(--on-night);border-color:#ffffff40}
+.trust{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.85rem;color:var(--on-night-muted)}
+.trust span{display:inline-flex;align-items:center;gap:6px}
+.trust span::before{content:"";width:6px;height:6px;border-radius:50%;background:#5EE3A1}
+
+/* phone mockup */
+.phone-wrap{display:grid;place-items:center}
+.phone{width:min(260px,100%);aspect-ratio:9/18.5;max-width:100%;background:#050814;border-radius:38px;padding:10px;box-shadow:0 30px 60px -20px #000c,0 0 0 1.5px #ffffff22,inset 0 0 0 1px #ffffff12;position:relative}
+.screen{height:100%;border-radius:30px;background:#F7F8FC;overflow:hidden;display:grid;grid-template-rows:auto 1fr;color:#0E1530;font-size:12px}
+.notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:70px;height:18px;border-radius:12px;background:#050814;z-index:2}
+.app-top{background:linear-gradient(160deg,#0E1530,#223B9E);color:#fff;padding:36px 14px 14px;display:grid;gap:3px}
+.app-top b{font:800 15px var(--display)}
+.app-top span{font-size:10.5px;opacity:.75}
+.app-body{padding:12px;display:grid;gap:8px;align-content:start;position:relative}
+.stepname{font:500 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#5A6485}
+.svc{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1.5px solid #E1E6F3;border-radius:12px;padding:9px 10px;transition:all .35s}
+.svc b{font-weight:700;font-size:12px}
+.svc small{color:#5A6485;font-size:10px}
+.svc .pr{font:700 12px var(--mono)}
+.svc.on{border-color:#2D5BFF;background:#EEF2FF;transform:scale(1.02)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.slot{background:#fff;border:1.5px solid #E1E6F3;border-radius:9px;padding:7px 0;text-align:center;font:600 11px var(--mono);transition:all .35s}
+.slot.off{color:#B6BDD3;text-decoration:line-through}
+.slot.on{background:#2D5BFF;border-color:#2D5BFF;color:#fff}
+.bookbtn{background:#1DAA57;color:#fff;border-radius:11px;text-align:center;padding:10px;font-weight:700;font-size:12px;transition:all .3s}
+.bookbtn.press{transform:scale(.96);filter:brightness(.9)}
+.done{position:absolute;inset:0;background:#F7F8FC;display:grid;place-items:center;align-content:center;gap:8px;text-align:center;padding:16px;opacity:0;transition:opacity .4s;pointer-events:none}
+.done.show{opacity:1}
+.tick{width:54px;height:54px;border-radius:50%;background:#1DAA57;display:grid;place-items:center;box-shadow:0 0 0 8px #1DAA5722}
+.tick svg{width:28px;height:28px}
+.done b{font:800 15px var(--display)}
+.done span{font-size:11px;color:#5A6485}
+.phone-cap{margin-top:12px;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--on-night-muted);text-align:center}
+
+/* ---------- antes / depois ---------- */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col{border-radius:18px;padding:20px;display:grid;gap:12px;align-content:start}
+.col.before{background:var(--warn-soft)}
+.col.after{background:var(--good-soft)}
+.col h3{display:flex;align-items:center;gap:8px}
+.col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.col li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:.97rem}
+.ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 .75rem var(--mono);color:#fff;margin-top:1px}
+.before .ic{background:var(--warn)}
+.after .ic{background:var(--good)}
+
+/* ---------- deliverables ---------- */
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.del{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:10px;align-content:start;transition:transform .2s,border-color .2s}
+.del:hover{transform:translateY(-3px);border-color:var(--cobalt)}
+.del .badge{width:44px;height:44px;border-radius:13px;background:var(--cobalt);color:#fff;display:grid;place-items:center}
+.del .badge svg{width:22px;height:22px}
+.del ul{margin:0;padding-left:17px;color:var(--muted);font-size:.92rem;display:grid;gap:3px}
+
+/* numbers strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{display:grid;gap:4px;padding:6px 4px}
+.stat b{font:800 clamp(1.6rem,4vw,2.2rem)/1 var(--display);color:var(--cobalt);letter-spacing:-.02em}
+.stat span{font-size:.9rem;color:var(--muted)}
+
+/* ---------- plans ---------- */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;align-items:stretch}
+.plan{position:relative;text-align:left;font:inherit;color:inherit;background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:24px 22px;display:grid;gap:14px;cursor:pointer;align-content:start;transition:transform .2s,border-color .2s,box-shadow .2s}
+.plan:hover{transform:translateY(-3px)}
+.plan[aria-pressed="true"]{border-color:var(--cobalt);box-shadow:0 0 0 4px var(--cobalt-soft),var(--shadow)}
+.plan.rec{background:var(--night);color:var(--on-night);border-color:var(--night)}
+.plan.rec[aria-pressed="true"]{border-color:#2D5BFF}
+.plan.rec .pmuted{color:var(--on-night-muted)}
+.pbadge{position:absolute;top:-13px;left:22px;background:var(--amber);color:var(--amber-ink);font:600 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 11px;border-radius:99px}
+.plan-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.radio{width:24px;height:24px;border-radius:50%;border:2px solid currentColor;opacity:.5;display:grid;place-items:center;flex:none}
+.plan[aria-pressed="true"] .radio{opacity:1;border-color:#2D5BFF;background:#2D5BFF}
+.plan[aria-pressed="true"] .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.price{font:800 3rem/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.price small{font:500 1rem var(--body);letter-spacing:0;opacity:.7}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:.95rem}
+.plan li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.plan li::before{content:"✓";color:var(--good);font-weight:700}
+.plan.rec li::before{color:#5EE3A1}
+.pay{font-size:.85rem;border-top:1px dashed currentColor;padding-top:12px;opacity:.85}
+.pmuted{color:var(--muted)}
+.monthly{display:flex;gap:14px;align-items:flex-start;background:var(--cobalt-soft);border-radius:18px;padding:18px;cursor:pointer}
+.monthly input{width:22px;height:22px;accent-color:var(--cobalt);margin:2px 0 0;flex:none}
+.monthly b{font-family:var(--display);font-size:1.05rem}
+
+/* ---------- steps ---------- */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;gap:8px;align-content:start;position:relative}
+.steps li::before{content:counter(s);width:40px;height:40px;border-radius:12px;background:var(--cobalt-soft);color:var(--cobalt);display:grid;place-items:center;font:700 1rem var(--mono)}
+.steps b{font-family:var(--display);font-size:1.05rem}
+.steps span{color:var(--muted);font-size:.93rem}
+
+/* ---------- portfolio ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.proj{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+a.proj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.shot{aspect-ratio:16/10;max-width:100%;padding:12px;display:grid;grid-template-rows:auto 1fr;gap:10px;background:var(--c1)}
+.shot .bar{display:flex;gap:5px}
+.shot .bar i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4)}
+.shot .mock{display:grid;gap:7px;align-content:center;padding:4px 8px}
+.shot .t{font:800 1.15rem/1.05 var(--display);color:var(--c3)}
+.shot .l{height:6px;border-radius:4px;background:var(--c3);opacity:.35;width:72%}
+.shot .l.s{width:48%}
+.shot .b{width:84px;height:20px;border-radius:6px;background:var(--c2);margin-top:4px}
+.pinfo{padding:14px 16px;display:grid;gap:3px}
+.pinfo b{font-family:var(--display);font-size:1.02rem}
+.pinfo span{font-size:.87rem;color:var(--muted)}
+.go{font:500 .72rem var(--mono);color:var(--cobalt);text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+.go.wip{color:var(--muted)}
+
+/* ---------- faq ---------- */
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:600 1.2rem var(--mono);color:var(--cobalt)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:8px}
+
+/* ---------- final CTA ---------- */
+.final{background:linear-gradient(135deg,#1B3BD1,#2D5BFF 55%,#4C7BFF);color:#fff;border-radius:28px;padding:clamp(24px,5vw,44px);display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.final .photo{width:110px;height:110px;border-color:#fff;box-shadow:0 0 0 6px #ffffff30}
+.final .photo::after{border-color:#2D5BFF;width:20px;height:20px;right:4px;bottom:4px}
+.final h2{color:#fff}
+.final p{color:#DDE6FF}
+.final-in{display:grid;gap:14px}
+.num{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:500 .95rem var(--mono)}
+.copy{background:#ffffff22;color:#fff;border:1px solid #ffffff55;border-radius:10px;padding:7px 12px;font:600 .85rem var(--body);cursor:pointer}
+
+/* ---------- sticky ---------- */
+.cta{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:10}
+.cta-in{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cta-sum{display:grid;line-height:1.2;min-width:0}
+.cta-sum b{font:800 1.35rem var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.cta-sum span{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.foot{text-align:center;font-size:.82rem;color:var(--muted);padding-block:6px}
+
+
+/* hero photo */
+.hero{padding-bottom:0}
+.hero-copy{padding-bottom:clamp(22px,5vw,44px)}
+.hero-photo{margin:0;align-self:end;position:relative;display:grid;justify-items:center}
+.hero-photo img{position:relative;width:min(380px,100%);max-width:100%;height:auto;display:block;filter:drop-shadow(0 20px 40px #0009)}
+.hero-photo .glow{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);width:88%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#2D5BFFAA 0,#2D5BFF33 45%,transparent 70%)}
+.hero-photo figcaption{position:absolute;left:0;bottom:22px;background:#ffffffee;color:#0E1530;border-radius:14px;padding:10px 14px;display:grid;line-height:1.25;box-shadow:0 10px 30px #0006}
+.hero-photo figcaption b{font:800 .95rem var(--display)}
+.hero-photo figcaption span{font-size:.78rem;color:#5A6485}
+/* demo */
+.demo{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center}
+.demo-panel{background:var(--night);border-radius:20px;padding:26px 16px;display:grid;place-items:center}
+.demo-copy{display:grid;gap:20px}
+.demo-steps{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:d}
+.demo-steps li{counter-increment:d;display:grid;grid-template-columns:40px 1fr;column-gap:14px;row-gap:2px}
+.demo-steps li::before{content:counter(d);grid-row:span 2;width:40px;height:40px;border-radius:12px;background:var(--cobalt);color:#fff;display:grid;place-items:center;font:800 1rem var(--display)}
+.demo-steps b{font-family:var(--display);font-size:1.05rem}
+.demo-steps span{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.demo{grid-template-columns:1fr}.hero-photo img{width:min(320px,90%)}}
+
+
+/* discreet avatar */
+.photo.sm{width:46px;height:46px;border-width:2px;box-shadow:0 0 0 3px #2D5BFF33}
+.photo.sm::after{width:11px;height:11px;border-width:2px;right:-1px;bottom:0}
+.final .photo{width:76px;height:76px}
+/* hero stack */
+.stack{position:relative;min-height:330px;display:grid;align-items:center;padding-block:46px 40px}
+.browser{justify-self:end;width:min(340px,88%);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -20px #000c,0 0 0 1px #ffffff1a;color:#0E1530}
+.b-bar{display:flex;align-items:center;gap:5px;padding:9px 12px;background:#EEF1F8}
+.b-bar i{width:8px;height:8px;border-radius:50%;background:#C9D0E2}
+.b-bar .url{margin-left:8px;flex:1;background:#fff;border-radius:6px;padding:3px 10px;font-size:11px;color:#5A6485}
+.b-hero{padding:22px 18px 16px;display:grid;gap:6px;background:linear-gradient(160deg,#0E1530 0,#1F3A9E 100%);color:#fff}
+.b-logo{width:34px;height:34px;border-radius:10px;background:#fff;color:#1F3A9E;display:grid;place-items:center;font:800 1rem var(--display)}
+.b-hero b{font:800 1.15rem/1.15 var(--display)}
+.b-hero span{font-size:12px;opacity:.8}
+.b-btns{display:flex;gap:6px;margin-top:6px}
+.b-btns em{font-style:normal;font-size:11px;font-weight:700;background:#1DAA57;border-radius:7px;padding:6px 10px}
+.b-btns em.o{background:transparent;border:1px solid #ffffff66}
+.b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px}
+.b-grid i{aspect-ratio:1;border-radius:8px;background:linear-gradient(135deg,#DDE4F7,#C3CEEE)}
+.gcard,.wmsg{position:absolute;background:#fff;color:#0E1530;border-radius:14px;box-shadow:0 16px 36px -10px #000a;padding:10px 12px;font-size:12px}
+.gcard{left:0;top:0;display:grid;gap:4px;animation:float 6s ease-in-out infinite}
+.g-top{display:flex;align-items:center;gap:8px}
+.g-top b{font-weight:700;font-size:12.5px}
+.g-dot{width:20px;height:20px;border-radius:50%;background:#2D5BFF;color:#fff;display:grid;place-items:center;font:800 11px var(--display)}
+.g-meta{color:#5A6485;font-size:11px}
+.g-meta .open{color:#1DAA57;font-weight:700}
+.wmsg{right:-6px;bottom:0;display:flex;gap:9px;align-items:flex-start;max-width:230px;animation:float 6s ease-in-out -3s infinite}
+.w-ic{width:24px;height:24px;border-radius:50%;background:#1DAA57;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:800;flex:none}
+.wmsg b{display:block;font-size:12px}
+.wmsg span{color:#5A6485;font-size:11.5px;line-height:1.35}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* journey */
+.jgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.jcard{display:grid;gap:10px;align-content:start}
+.jvis{background:var(--night);border-radius:16px;height:140px;display:grid;place-items:center;align-content:center;gap:8px;padding:14px}
+.mini-search{background:#fff;color:#0E1530;border-radius:99px;padding:8px 14px;font-size:12px;width:100%;max-width:230px}
+.mini-result{background:#ffffff14;border:1px solid #ffffff22;border-radius:10px;padding:8px 12px;color:#fff;width:100%;max-width:230px;display:grid;font-size:12px}
+.mini-result span{color:#5EE3A1;font-size:11px}
+.mini-ig{display:grid;grid-template-columns:repeat(3,34px);gap:5px}
+.mini-ig i{aspect-ratio:1;border-radius:6px;background:linear-gradient(135deg,#2D5BFF,#8FB0FF)}
+.mini-ig i:nth-child(2n){background:linear-gradient(135deg,#1F2A4D,#4C6BD8)}
+.mini-chat{display:grid;gap:6px;width:100%;max-width:220px;font-size:12px}
+.mini-chat span{padding:7px 11px;border-radius:12px;max-width:80%}
+.mini-chat .in{background:#ffffff1f;color:#fff;justify-self:start;border-bottom-left-radius:4px}
+.mini-chat .out{background:#1DAA57;color:#fff;justify-self:end;border-bottom-right-radius:4px}
+@media (max-width:860px){.jgrid{grid-template-columns:1fr}.stack{min-height:300px}}
+@media (max-width:480px){.gcard{top:0}.wmsg{bottom:0;max-width:200px}}
+@media (prefers-reduced-motion:reduce){.gcard,.wmsg{animation:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .dgrid,.strip{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .ba,.steps{grid-template-columns:1fr}
+  .final{grid-template-columns:1fr}
+  .cta .btn{padding:13px 15px}
+  .cta .btn .lbl-long{display:none}
+  .cta .btn .lbl-short{display:inline}
+}
+@media (max-width:340px){ .dgrid{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+
+/* ---------- portfolio device previews ---------- */
+.pgrid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.stage{position:relative;aspect-ratio:16/11;max-width:100%;overflow:hidden;background:
+  radial-gradient(60% 60% at 45% 45%,color-mix(in srgb,var(--glow) 35%,transparent),transparent 70%),
+  linear-gradient(160deg,#16213A,#0A1020);display:grid;place-items:center}
+.laptop{position:absolute;left:7%;top:12%;width:76%;transition:transform .35s}
+.lid{background:#0A0D14;border-radius:10px 10px 0 0;padding:4% 4% 3%;box-shadow:0 0 0 1.5px #3A4561,0 20px 40px -10px #000c}
+.scr{aspect-ratio:16/10;overflow:hidden;border-radius:3px;background:#000}
+.scr img,.pscr img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.base{height:9px;margin:0 -7%;background:linear-gradient(180deg,#C9CED8,#8C93A3);border-radius:0 0 12px 12px;position:relative}
+.base::before{content:"";position:absolute;left:42%;right:42%;top:0;height:4px;background:#6E7586;border-radius:0 0 6px 6px}
+.phone-m{position:absolute;right:6%;bottom:8%;width:21%;aspect-ratio:9/19.5;background:#0A0D14;border-radius:14px;padding:3.5px;box-shadow:0 0 0 1.5px #3A4561,0 16px 30px -8px #000d;transition:transform .35s}
+.pscr{width:100%;height:100%;border-radius:11px;overflow:hidden;background:#000}
+a.proj:hover .laptop{transform:translateY(-4px)}
+a.proj:hover .phone-m{transform:translateY(-8px) rotate(-2deg)}
+.proj .pinfo{padding:16px 18px 18px}
+.go{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font:700 .8rem var(--display);letter-spacing:.04em;text-transform:uppercase}
+.go .arr{transition:transform .2s}
+a.proj:hover .go .arr{transform:translate(3px,-3px)}
+
+
+/* hero showcase */
+.showcase{margin:0;display:grid;gap:12px;justify-items:center;--glow:#D4A857}
+.show-stage{position:relative;display:block;width:100%;aspect-ratio:16/12;max-width:520px}
+.show-stage::before{content:"";position:absolute;inset:8% 4% 4%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--glow) 45%,transparent),transparent);filter:blur(10px)}
+.show-stage .laptop{left:0;top:10%;width:84%}
+.show-stage .phone-m{right:0;bottom:4%;width:23%;border-radius:18px;padding:4px}
+.show-stage .pscr{border-radius:14px}
+.show-stage .lid{box-shadow:0 0 0 1.5px #3A4561,0 30px 60px -18px #000}
+.show-stage:hover .laptop{transform:translateY(-4px)}
+.show-stage:hover .phone-m{transform:translateY(-8px) rotate(-2deg)}
+.showcase figcaption{font-size:.85rem;color:var(--muted);text-align:center}
+.showcase figcaption a{color:var(--gold-l);text-decoration:none;font-weight:600}
+.showcase figcaption a:hover{text-decoration:underline}
+@media (max-width:860px){.show-stage{max-width:420px}}
+
+
+/* compact layout */
+.wrap{gap:18px}
+.sec{padding:clamp(18px,3.5vw,28px);gap:16px}
+.why{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+.why-r{display:grid;gap:18px}
+.why ul{grid-template-columns:1fr 1fr;gap:8px}
+.why ul li{font-size:.92rem;padding:9px 12px}
+.why .steps{grid-template-columns:repeat(4,1fr);gap:10px;border-top:1px solid var(--line);padding-top:16px}
+.why .steps li{background:none;border:0;padding:0;display:grid;grid-template-columns:none;gap:4px}
+.why .steps li::before{width:30px;height:30px;font-size:.85rem}
+.why .steps b{font-size:.92rem}
+.why .steps span{font-size:.82rem}
+.dgrid{gap:10px}
+.del{padding:14px}
+@media (max-width:860px){.why{grid-template-columns:minmax(0,1fr)}.why ul{grid-template-columns:1fr}.why .steps{grid-template-columns:1fr 1fr}}
+
+@media (max-width:560px){.del{padding:12px}.del h3{font-size:.95rem}.del ul{font-size:.85rem;padding-left:15px}.del .badge{width:36px;height:36px}.hero p.lead{display:none}.why .sign{display:none}}
+@media (max-width:560px){
+  #featured{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin}
+  #featured>*{scroll-snap-align:start}
+  .why ul{gap:4px}
+  .why ul li{background:none!important;border:0!important;padding:4px 0!important;font-size:.9rem}
+  .why ul li:hover{transform:none;box-shadow:none}
+  .why .steps span{display:none}
+  .why .steps{grid-template-columns:repeat(4,1fr);gap:6px}
+  .why .steps b{font-size:.78rem}
+}
+
+/* hero side-by-side + animated background */
+.hero-main{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);padding-bottom:clamp(22px,4vw,40px);min-height:520px}
+.hero-main .hero-copy{padding-bottom:0}
+.hero-main>.hero-bg,.hero-main>.hero-veil{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero-main>.hero-veil{background:linear-gradient(90deg,#0B1220F2 0%,#0B1220B3 42%,#0B122033 75%,transparent),linear-gradient(0deg,#0B1220CC,transparent 35%)}
+.hero-main>*:not(.hero-bg):not(.hero-veil){position:relative;z-index:1}
+.hero-main>.hero-video{object-fit:cover;opacity:0;transition:opacity 1.2s ease;filter:saturate(.9) brightness(1.15)}
+.hero-main>.hero-video.on{opacity:1}
+.hero-main::before{display:none}
+.hero-main .show-stage{max-width:560px}
+@media (max-width:700px){
+  .hero-main{grid-template-columns:1fr;min-height:0}
+  .hero-main .showcase{order:-1}
+  .hero-main .show-stage{max-width:300px}
+  .hero-main .showcase figcaption{display:none}
+  .hero-main>.hero-veil{background:linear-gradient(180deg,transparent 0,#0B1220B3 35%,#0B1220F2 60%)}
+}
+
+/* deliverables as a connected flow */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.flow::before{content:"";position:absolute;top:17px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,#D4A857,#E8C98A 50%,#D4A857);opacity:.7}
+.fstep{display:grid;gap:12px;justify-items:center;grid-template-rows:auto 1fr;position:relative}
+.fnum{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#0B1220;border:2px solid var(--gold);color:var(--gold-l);font:800 .95rem var(--display);position:relative;z-index:1}
+.fstep{min-width:0}
+.fstep .del{justify-self:stretch;min-width:0;width:auto;height:100%;display:grid;gap:8px;align-content:start}
+.del-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.ptag{font:700 .66rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;padding:6px 8px;border-radius:99px;border:1px solid #8FA8DA66;color:#CFDBF5;white-space:nowrap}
+.ptag.only{border-color:#D4A85799;color:var(--gold-l);background:#D4A85714}
+.outcome{margin:0;color:var(--gold-l);font-weight:600;font-size:.95rem;line-height:1.35}
+@media (max-width:860px){
+  .flow{grid-template-columns:minmax(0,1fr);gap:14px}
+  .flow::before{top:18px;bottom:18px;left:17px;right:auto;width:2px;height:auto;background:linear-gradient(180deg,#D4A857,#E8C98A 50%,#D4A857)}
+  .fstep{grid-template-columns:36px minmax(0,1fr);justify-items:stretch;align-items:start}
+}
+
+/* rich footer */
+.site-foot{border-top:1px solid var(--line);margin-top:10px;padding-block:34px 18px;display:grid;gap:26px}
+.sf-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:26px}
+.sf-brand{display:grid;gap:14px;align-content:start}
+.sf-me{display:flex;align-items:center;gap:12px}
+.sf-me b{display:block;font:800 1.05rem var(--display);color:#fff}
+.sf-me span{font-size:.85rem;color:var(--muted)}
+.sf-brand p{margin:0;color:var(--muted);font-size:.92rem;max-width:34ch}
+.sf-cta{justify-self:start;padding:11px 16px;font-size:.92rem}
+.sf-col h4{margin:0 0 10px;font:700 .72rem var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sf-col ul{list-style:none;margin:0;padding:0;display:grid}
+.sf-col li{border-bottom:1px solid var(--line);padding:9px 0;font-size:.9rem;color:#D9DEEA}
+.sf-col li:last-child{border-bottom:0}
+.sf-col a{color:#fff;text-decoration:none;white-space:nowrap}
+.sf-col a:hover,.sf-nav button:hover{color:var(--gold-l)}
+.sf-nav button,.sf-bottom button{background:none;border:0;padding:0;font:inherit;color:#fff;cursor:pointer;text-align:left}
+.sf-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:16px;font-size:.82rem;color:var(--muted)}
+.sf-bottom button{color:var(--muted);font-size:.82rem}
+@media (max-width:980px){.sf-grid{grid-template-columns:1fr 1fr}.sf-brand{grid-column:1/-1}}
+@media (max-width:480px){.sf-grid{gap:20px 16px}.sf-col li{font-size:.84rem;padding:7px 0}}
+
+/* language switch */
+.topbar .tb-l{display:flex;align-items:center;gap:14px}
+.topbar .tb-l>div{display:grid;gap:2px}
+.lang{display:inline-flex;align-items:center;gap:6px;background:#ffffff0d;border:1px solid var(--line);color:#fff;border-radius:99px;padding:7px 12px;font:700 .78rem var(--display);letter-spacing:.06em;cursor:pointer;transition:border-color .2s,background .2s}
+.lang:hover{border-color:var(--gold);background:#D4A85714}
+.lang svg{width:15px;height:15px;color:var(--gold)}
+/* ================= PALETA A · AZUL-NOITE E DOURADO (60/30/10) ================= */
+:root{--bg:#0B1220;--surface:#111A2E;--surface-2:#16213A;--ink:#F5F1E8;--muted:#C3CAD9;--line:#23304D;
+  --card:#101A2D;--card-2:#0E1627;--card-in:#16213A;--gold:#D4A857;--gold-l:#E8C98A;--blue:#8FA8DA;--blue-d:#6B8AC9;
+  --cobalt:#6B8AC9;--sky:#8FA8DA;--night:#0A1020;--on-night:#F5F1E8;--on-night-muted:#C3CAD9;--shadow:0 20px 50px -24px #000c}
+body{background:radial-gradient(900px 600px at 90% -5%,#6B8AC922,transparent 60%),radial-gradient(800px 600px at -10% 40%,#13203A,transparent 60%),#0B1220;background-attachment:fixed;color:var(--ink);font-size:17px}
+h2{color:#fff}
+.muted,.pmuted{color:var(--muted)}
+.eyebrow{color:var(--gold)}
+.sec{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+main > .sec:nth-of-type(even){background:var(--card-2)}
+.del,.why ul li,.proj,.monthly,.plan{background:var(--card-in);border:1px solid var(--line);transition:transform .2s,border-color .2s,box-shadow .2s}
+.del:hover,.proj:hover,.why ul li:hover,.plan:hover{transform:translateY(-2px);border-color:#8FA8DA88;box-shadow:0 14px 30px -16px #000}
+.proj{overflow:hidden}
+.jvis,.demo-panel{background:#0A1020;border:1px solid var(--line)}
+.hero{border:1px solid transparent;background:
+  radial-gradient(80% 80% at 90% 0%,#6B8AC933,transparent 55%),
+  linear-gradient(135deg,#13203A,#0B1220 65%) padding-box,
+  linear-gradient(135deg,#D4A857,#23304D 35%,#23304D 65%,#6B8AC9) border-box}
+.plan.rec{color:#fff;border:1.5px solid transparent;background:linear-gradient(160deg,#18264A,#101A2D) padding-box,linear-gradient(135deg,#E8C98A,#D4A857 40%,#23304D 75%) border-box}
+.final{border:1px solid transparent;background:radial-gradient(80% 120% at 100% 0%,#6B8AC933,transparent 55%),linear-gradient(135deg,#13203A,#1B2B4D) padding-box,linear-gradient(135deg,#D4A857,#23304D 45%,#6B8AC9) border-box}
+.hero h1 mark{background:none;color:var(--gold);-webkit-text-fill-color:currentColor}
+.hello,.lead{color:#E6E1D6}
+.lead2{color:var(--muted)}
+.photo{border-color:var(--gold);box-shadow:0 0 0 3px #D4A85733}
+.photo::after{background:#4CC38A}
+.trust span::before{background:var(--gold)}
+.stat b{background:none;color:var(--gold-l);-webkit-text-fill-color:currentColor}
+.del .badge,.demo-steps li::before,.why ul li::before{background:#6B8AC926;color:#CFDBF5;border:1px solid #6B8AC955}
+.steps li::before{background:#D4A85714;color:var(--gold);border:1px solid #D4A85766}
+.col.before{background:#FFFFFF06;border:1px solid var(--line)}
+.col.after{background:linear-gradient(160deg,#D4A8571A,#D4A85705);border:1px solid #D4A85766}
+.before .ic{background:#4A5775;color:#fff}
+.after .ic{background:var(--gold);color:#1A1305}
+.plan li::before,.plan.rec li::before{color:var(--gold)}
+.pinfo .go{color:var(--gold)}
+.pinfo .go.wip{color:var(--muted)}
+summary::after{color:var(--gold)}
+details{border-color:var(--line)!important}
+.footer a{color:var(--gold-l)}
+.b-hero{background:linear-gradient(160deg,#13203A,#1B2B4D)}
+.b-logo{color:#13203A}
+.g-dot{background:#4285F4}
+.w-ic{background:#25D366}
+.mini-ig i{background:linear-gradient(135deg,#1B2B4D,#6B8AC9)}
+.mini-ig i:nth-child(2n){background:linear-gradient(135deg,#8C6B2E,#D4A857)}
+.mini-chat .out{background:#25D366;color:#062B14}
+.mini-result span{color:#4CC38A}
+.btn.wa,.final .btn.wa{background:linear-gradient(135deg,#E8C98A,#D4A857 55%,#B98B3C)!important;color:#1A1305!important;box-shadow:0 10px 28px -10px #D4A857AA!important;position:relative;overflow:hidden}
+.btn.wa:hover{box-shadow:0 14px 34px -10px #D4A857DD!important}
+.btn.wa.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#ffffff90 50%,transparent 70%);transform:translateX(-120%);animation:shine 5s ease-in-out 1.5s infinite}
+@keyframes shine{0%,72%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.b-btns em{background:var(--gold);color:#1A1305}
+.btn.line{border-color:#F5F1E84D;color:#F5F1E8!important}
+.btn.line:hover{border-color:var(--gold)}
+.plan[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 0 3px #D4A85730,var(--shadow)}
+.plan[aria-pressed="true"] .radio{border-color:var(--gold);background:var(--gold)}
+.monthly{background:#6B8AC914;border-color:#6B8AC955}
+.monthly input{accent-color:#D4A857}
+.pbadge{background:var(--gold);color:#1A1305}
+.cta{background:#0B1220EB;border-top:1px solid var(--line)}
+.topbar b,.footer b{color:#fff}
+.copy{border-color:#ffffff70;background:#ffffff14}
+@media (prefers-reduced-motion:reduce){.btn.wa.shine::after{animation:none;display:none}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="tb-l"><button type="button" class="lang" id="langBtn" aria-label="Change language to English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span id="langLbl">EN</span></button><div><b class="tb-t">Proposta Digital Personalizada</b><span id="refNo"></span><span id="validity"></span></div></div><div class="tb-r"><b>Preparada por Ronald Costa</b><span>Desenvolvimento Web e Automação de Processos</span></div></div>
+
+  <!-- ================= PROPOSTA ================= -->
+  <main id="viewProposal" class="wrap">
+    <section class="hero hero-main">
+      <canvas class="hero-bg" id="heroBg" aria-hidden="true"></canvas><video class="hero-bg hero-video" id="heroVideo" muted loop playsinline preload="auto" aria-hidden="true"></video><div class="hero-veil" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="who"><div class="photo sm" role="img" aria-label="Fotografia de Ronald Costa"></div><div><b id="myName">Ronald Costa</b><span id="myRole"></span></div></div>
+                <h1 id="heroTitle">Uma nova presença digital para <mark>o seu negócio</mark></h1>
+        <p class="lead">Proposta preparada por Ronald Costa, desenvolvedor web especializado em presença digital e automação de processos.</p>
+        <p class="lead2" id="lead"></p>
+        <div class="hero-ctas">
+          <a class="btn wa js-wa-talk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.1.1.7-.2 1.3Z"/></svg>Falar com Ronald</a>
+          <a class="btn line" href="#planos" id="toPlans">Ver planos</a>
+        </div>
+        <div class="trust"><span>Marca, site, Google e Instagram</span><span>Pagamento em 2 partes</span><span>Tudo em nome do seu negócio</span></div>
+      </div>
+      <figure class="showcase">
+        <a id="showLink" target="_blank" rel="noopener" class="show-stage">
+          <div class="laptop"><div class="lid"><div class="scr"><img id="showD" alt=""></div></div><div class="base"></div></div>
+          <div class="phone-m"><div class="pscr"><img id="showM" alt=""></div></div>
+        </a>
+        <figcaption>Exemplo de um projeto que desenvolvi · <a id="showName" target="_blank" rel="noopener"></a></figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="diagBlock">
+      <div class="sec-head"><div class="eyebrow">Diagnóstico</div><h2 id="diagTitle">Hoje e depois do projeto</h2></div>
+      <div class="ba">
+        <div class="col before"><h3>Hoje</h3><ul id="before"></ul></div>
+        <div class="col after"><h3>Com o projeto</h3><ul id="after"></ul></div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><div class="eyebrow">O que recebe</div><h2>Tudo ligado: o cliente encontra, confia e contacta</h2></div>
+      <ol class="flow" id="deliverables"></ol>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><div class="eyebrow">Trabalhos</div><h2>Projetos que já criei</h2></div>
+      <div class="pgrid" id="featured"></div>
+    </section>
+
+    <section class="sec" id="planos">
+      <div class="sec-head"><div class="eyebrow">Investimento</div><h2>Escolha o plano</h2><p class="muted">Toque num plano para o selecionar. O total aparece em baixo.</p></div>
+      <div class="plans" id="plans"></div>
+      <label class="monthly" for="monthly">
+        <input type="checkbox" id="monthly">
+        <div><b>Acompanhamento mensal · <span id="monthlyPrice"></span></b><br><span class="muted" id="monthlyText"></span></div>
+      </label>
+      <p class="muted" style="font-size:.88rem" id="plansNote"></p>
+    </section>
+
+    <section class="sec why">
+      <div class="sec-head"><div class="eyebrow">Como trabalho</div><h2>Um projeto acompanhado do início ao fim</h2>
+        <p class="muted">Todo o projeto será acompanhado diretamente por mim, desde a definição da identidade visual até à publicação. O objetivo é criar uma solução profissional, fácil de utilizar e adaptada às necessidades reais do seu negócio.</p>
+        <div class="sign"><div class="photo sm" role="img" aria-label="Fotografia de Ronald Costa"></div><div><b>Ronald Costa</b><span>Desenvolvedor Web</span></div></div>
+      </div>
+      <div class="why-r">
+        <ul>
+          <li>Atendimento direto durante todo o projeto</li>
+          <li>Solução personalizada para o negócio</li>
+          <li>Comunicação simples e acompanhamento próximo</li>
+          <li>Integração entre marca, site, WhatsApp e agenda</li>
+          <li>Projeto adaptado ao telemóvel</li>
+          <li>Orientação após a publicação</li>
+          <li>Estrutura fácil de atualizar e preparada para crescer</li>
+        </ul>
+        <ol class="steps" id="steps"></ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><div class="eyebrow">Perguntas frequentes</div><h2>Antes de decidir</h2></div>
+      <div id="faq"></div>
+    </section>
+
+    <section class="final">
+      <div class="photo" role="img" aria-label="Fotografia de Ronald Costa"></div>
+      <div class="final-in">
+        <h2 id="finalTitle">Vamos dar ao seu negócio a imagem que ele merece?</h2>
+        <p>O próximo passo é uma conversa rápida comigo para conhecer melhor <span id="finalObj">o seu negócio</span>, os serviços e a imagem que deseja transmitir.</p>
+        <div class="final-ctas"><a class="btn wa shine js-wa-accept" target="_blank" rel="noopener">Quero avançar com o projeto</a><a class="btn line js-wa-talk" target="_blank" rel="noopener">Falar com Ronald</a><a class="btn line js-wa-ask" target="_blank" rel="noopener">Tenho uma dúvida</a></div>
+        <div class="num"><span id="numTxt"></span><button class="copy" id="copyBtn" type="button">Copiar número</button></div>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <div class="sf-grid">
+        <div class="sf-brand">
+          <div class="sf-me"><div class="photo sm" role="img" aria-label="Fotografia de Ronald Costa"></div><div><b>Ronald Costa</b><span>Desenvolvedor Web</span></div></div>
+          <p>Crio a presença digital de negócios locais: marca, site, Google e contacto, com acompanhamento direto do início ao fim.</p>
+          <a class="btn wa js-wa-talk sf-cta" target="_blank" rel="noopener">Falar com Ronald</a>
+        </div>
+        <div class="sf-col"><h4>Presença digital</h4><ul><li>Criação de sites</li><li>Logótipo e identidade visual</li><li>Perfil do Google</li><li>Instagram profissional</li></ul></div>
+        <div class="sf-col"><h4>Automação de processos</h4><ul><li>Marcações e agenda online</li><li>Ligação ao WhatsApp</li><li>Pedidos de orçamento pelo site</li><li>Menos tarefas repetitivas</li></ul></div>
+        <div class="sf-col"><h4>Nesta proposta</h4><ul class="sf-nav"><li><button type="button" data-go="featured">Projetos</button></li><li><button type="button" data-go="planos">Planos e valores</button></li><li><button type="button" data-go="steps">Como trabalho</button></li><li><button type="button" data-go="faq">Perguntas frequentes</button></li></ul></div>
+        <div class="sf-col"><h4>Contacto</h4><ul><li><a class="js-wa-talk" target="_blank" rel="noopener">WhatsApp: 937 299 444</a></li><li>Atendimento direto comigo</li><li>Margem Sul e Grande Lisboa</li><li>Reuniões presenciais ou online</li></ul></div>
+      </div>
+      <div class="sf-bottom"><span>© <span id="yr"></span> Ronald Costa · Desenvolvimento Web, Presença Digital e Automação de Processos</span><button type="button" data-go="top">Voltar ao topo ↑</button></div>
+    </footer>
+  </main>
+
+  <!-- ================= PORTFÓLIO ================= -->
+  <main id="viewPortfolio" class="wrap" hidden>
+    <section class="hero" style="grid-template-columns:1fr">
+      <div class="hero-copy">
+        <div class="who"><div class="photo" role="img" aria-label="Fotografia de Ronald Costa"></div><div><b>Ronald Costa</b><span>Portfólio</span></div></div>
+        <h1>Sites que <mark>trabalham pelo negócio</mark></h1>
+        <p class="lead">Projetos e demonstrações que desenvolvi. Em projetos de clientes, algumas imagens foram trocadas por fotografias ilustrativas para preservar a identidade do negócio.</p>
+      </div>
+    </section>
+    <section class="sec"><div class="pgrid" id="allProjects"></div></section>
+    <div><a class="btn line" style="color:var(--cobalt)" href="#" id="backBtn">← Voltar à proposta</a></div>
+  </main>
+</div>
+
+<div class="cta">
+  <div class="cta-in">
+    <div class="cta-sum"><b id="ctaTotal"></b><span id="ctaDetail"></span></div>
+    <div style="display:flex;gap:8px">
+      <a class="btn line js-wa-ask" target="_blank" rel="noopener" style="color:var(--ink)">Dúvida</a>
+      <a class="btn wa shine js-wa-accept" target="_blank" rel="noopener"><span class="lbl-long">Quero avançar com o projeto</span><span class="lbl-short">Quero avançar</span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — edite só esta parte
+   ===================================================================== */
+const ME = {
+  name: "Ronald Costa",
+  role: "Desenvolvedor Web · Presença Digital e Automação de Processos",
+  whatsapp: "351937299444",
+  whatsappShow: "+351 937 299 444",
+  region: "Almada · Seixal · Setúbal · Lisboa"
+};
+
+const PLANS = {
+  essencial: { name:"Presença Essencial", price:149,
+    items:["Logótipo, cores e letras da marca","Instagram organizado: bio, foto e destaques","Serviços e preços organizados","Perfil do Google revisto"],
+    pay:"Pagamento único" },
+  completo: { name:"Presença Digital Completa", price:299,
+    items:["Tudo do plano Essencial","Site profissional adaptado ao telemóvel","Contacto e marcações ligados ao site","WhatsApp, mapa, horário e avaliações"],
+    pay:"150 € para iniciar · 149 € na entrega" }
+};
+const MONTHLY = { price:39, text:"Alojamento do site, suporte, verificação do funcionamento e até 2 pequenas atualizações por mês. Cancela quando quiser." };
+
+/* Projetos — os 3 primeiros com featured:true aparecem na proposta.
+   url: link do projeto ("" = ainda não publicado). c1 fundo, c2 botão, c3 texto. */
+const PROJECTS = [
+  { name:"Barbearia Empire Man", type:"Barbearia · site, equipa e marcações", url:"https://dev-rcosta.github.io/Barbearia/", featured:true, img:"barb", glow:"#C9A45C" },
+  { name:"SA Binho Tech", type:"Tecnologia e reparações · catálogo e WhatsApp", url:"https://dev-rcosta.github.io/Binho-tec/", featured:true, img:"binho", glow:"#1E7BFF" },
+  { name:"Andréa Costa Beauty Center", type:"Cabeleireiro e estética em Almada · marca e site", url:"https://dev-rcosta.github.io/Andrea-Costa-Beauty-Center/", featured:true, img:"andrea", glow:"#E7A0BF" }
+];
+const PREVIEWS = {"barb": {"d": "assets/barb-desktop.webp", "m": "assets/barb-mobile.webp"}, "binho": {"d": "assets/binho-desktop.webp", "m": "assets/binho-mobile.webp"}, "andrea": {"d": "assets/andrea-desktop.webp", "m": "assets/andrea-mobile.webp"}};
+
+/* Clientes — o link da proposta termina em #chave  (ex.: ...#bandeira)
+   Sem chave mostra a proposta genérica. validUntil: "AAAA-MM-DD" ou "". */
+const CLIENTS = {
+  default: {
+    business:"", short:"", ref:"GERAL", recommended:"completo", plans:["essencial","completo"], validUntil:"",
+    services:[["Corte","30 min","15 €"],["Corte + barba","45 min","22 €"]],
+    intro:"Crio a presença digital do seu negócio: marca, site, Google e Instagram com a mesma imagem profissional, para ser encontrado e escolhido por mais clientes.", search:"negócio perto de mim",
+    before:["Quem procura no Google encontra pouca informação ou nenhuma","O Instagram e as fotografias não mostram a qualidade do trabalho","Os clientes novos chegam quase só por recomendação"],
+    after:["Aparece no Google com perfil completo e site próprio","Uma imagem profissional e coerente em todo o lado","Um caminho claro do primeiro clique até ao contacto"]
+  },
+  bandeira: {
+    business:"Barbershop Bandeira", short:"da Barbershop Bandeira", place:"a barbearia", siteItem:"Os três barbeiros com foto", showcase:"barb", ref:"2026-003", recommended:"completo", plans:["essencial","completo"], validUntil:"",
+    services:[["Corte","30 min","15 €"],["Corte + barba","45 min","22 €"]],
+    intro:"Dar à barbearia a imagem digital que ela merece, para atrair mais clientes na zona. A Timmi continua nas marcações, como já funciona.", search:"barbearia perto de mim", url:"barbershopbandeira.pt",
+    before:["A Timmi funciona, mas a página de marcações tem cores e disposição difíceis de ler","O Instagram não mostra a qualidade do trabalho dos três barbeiros","Não há um lugar único com serviços, equipa, avaliações e localização"],
+    after:["Marca e Instagram com imagem de barbearia premium","Site com os três barbeiros, serviços, avaliações e localização","Quem encontra a barbearia chega à Timmi num toque, sem mudar nada no dia a dia"],
+    note:"A subscrição da Timmi continua a ser paga diretamente pela barbearia e não está incluída nos valores."
+  },
+  yola: {
+    business:"Yola Pereira – Hair Stylist & Spa", short:"da Yola Pereira", place:"o salão", siteItem:"Galeria dos seus trabalhos", showcase:"andrea", ref:"2026-004", recommended:"completo", plans:["completo"], validUntil:"",
+    services:[["Brushing","45 min","20 €"],["Coloração","90 min","45 €"]],
+    intro:"Criar de raiz a imagem digital do salão: marca, site, Google e Instagram, para que quem ouve falar de si a encontre e a escolha.", search:"cabeleireira perto de mim", url:"yolapereira.pt",
+    before:["O salão ainda não tem presença digital: quem ouve falar de si não tem onde confirmar","Os trabalhos não estão reunidos num sítio para mostrar","Novas clientes dependem só do passa-palavra"],
+    after:["A imagem oficial do salão, coerente em todo o lado","Galeria com os seus trabalhos a vender por si","As clientes encontram-na no Google e contactam num toque"],
+    note:"O domínio e a eventual plataforma de marcações ficam em nome do salão e são apresentados à parte."
+  }
+};
+/* ===================================================================== */
+
+const PHOTO = "assets/ronald-costa.jpg";
+const ICONS = {
+  marca:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg>',
+  site:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>',
+  agenda:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2 2 4-4"/></svg>',
+  google:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20.5 20.5 16 16"/></svg>'
+};
+const DELIVERABLES = [
+  {icon:"marca", label:"Marca", title:"Uma imagem que se reconhece", outcome:"Passa a ser lembrado e reconhecido", items:["Logótipo criado ou modernizado","Cores e letras definidas"], plans:["essencial","completo"]},
+  {icon:"site", label:"Site", title:"A montra aberta 24 h", outcome:"Responde por si, mesmo fora do horário", items:["Adaptado ao telemóvel","{site}"], plans:["completo"]},
+  {icon:"google", label:"Google", title:"Ser encontrado na zona", outcome:"Aparece a quem procura na sua zona", items:["Perfil do Google completo","Fotografias, horário e rotas"], plans:["essencial","completo"]},
+  {icon:"agenda", label:"Contacto", title:"Transformar visitas em clientes", outcome:"Um toque e o cliente fala consigo", items:["Bio, foto e destaques","WhatsApp e marcações num toque"], plans:["essencial","completo"]}
+];
+const STRIP = [["1 imagem","igual no Google, Instagram e site"],["24 h","montra aberta, mesmo com o negócio fechado"],["1 toque","do primeiro clique até ao contacto"],["100%","em nome do seu negócio"]];
+const STEPS = [
+  ["Aceita a proposta","Um toque em “Quero avançar” e combinamos o arranque."],
+  ["Conversa de 15 min","Estilo, serviços, preços, fotografias e horários."],
+  ["Primeira versão","Mostro-lhe o resultado e ajustamos juntos."],
+  ["Site no ar","Publico tudo e explico como gerir as marcações."]
+];
+const FAQ = [
+  ["E se já uso uma plataforma de marcações?","Continua a usá-la. O site e o Instagram passam a levar os clientes até ela num toque. Se não tiver nenhuma, posso configurar uma."],
+  ["O domínio e as contas ficam em nome de quem?","Do seu negócio. Eu configuro tudo, mas a titularidade é sempre sua."],
+  ["E se quiser mudar alguma coisa depois?","Com o acompanhamento mensal, até 2 pequenas atualizações por mês estão incluídas. Sem ele, cada alteração é orçamentada à parte."]
+];
+
+
+/* ---------- language (PT / EN) ---------- */
+const EN = {"Proposta Digital Personalizada": "Personalised Digital Proposal", "Preparada por Ronald Costa": "Prepared by Ronald Costa", "Desenvolvimento Web e Automação de Processos": "Web Development and Process Automation", "Desenvolvedor Web · Presença Digital e Automação de Processos": "Web Developer · Digital Presence and Process Automation", "Uma nova presença digital para": "A new digital presence for", "o seu negócio": "your business", "Proposta preparada por Ronald Costa, desenvolvedor web especializado em presença digital e automação de processos.": "Proposal prepared by Ronald Costa, a web developer specialising in digital presence and process automation.", "Crio a presença digital do seu negócio: marca, site, Google e Instagram com a mesma imagem profissional, para ser encontrado e escolhido por mais clientes.": "I build your business's digital presence: brand, website, Google and Instagram with one professional image, so more customers find you and choose you.", "Falar com Ronald": "Talk to Ronald", "Ver planos": "See plans", "Marca, site, Google e Instagram": "Brand, website, Google and Instagram", "Pagamento em 2 partes": "Pay in 2 instalments", "Tudo em nome do seu negócio": "Everything in your business's name", "Exemplo de um projeto que desenvolvi ·": "Example of a project I built ·", "Diagnóstico": "Assessment", "Hoje e depois do projeto": "Today and after the project", "Hoje": "Today", "Com o projeto": "With the project", "Quem procura no Google encontra pouca informação ou nenhuma": "People searching on Google find little or no information", "O Instagram e as fotografias não mostram a qualidade do trabalho": "Instagram and photos don't show the quality of the work", "Os clientes novos chegam quase só por recomendação": "New customers come almost only through word of mouth", "Aparece no Google com perfil completo e site próprio": "You appear on Google with a complete profile and your own website", "Uma imagem profissional e coerente em todo o lado": "A professional, consistent image everywhere", "Um caminho claro do primeiro clique até ao contacto": "A clear path from the first click to getting in touch", "O que recebe": "What you get", "Tudo ligado: o cliente encontra, confia e contacta": "All connected: customers find you, trust you and get in touch", "Nos 2 planos": "In both plans", "Marca": "Brand", "Uma imagem que se reconhece": "An image people recognise", "Passa a ser lembrado e reconhecido": "You get remembered and recognised", "Logótipo criado ou modernizado": "Logo created or refreshed", "Cores e letras definidas": "Colours and fonts defined", "Só no Completo": "Complete plan only", "Site": "Website", "A montra aberta 24 h": "A shop window open 24/7", "Responde por si, mesmo fora do horário": "It answers for you, even after hours", "Adaptado ao telemóvel": "Mobile-friendly", "Serviços, equipa e avaliações": "Services, team and reviews", "Ser encontrado na zona": "Get found locally", "Aparece a quem procura na sua zona": "You show up for people searching nearby", "Perfil do Google completo": "Complete Google profile", "Fotografias, horário e rotas": "Photos, opening hours and directions", "Contacto": "Contact", "Transformar visitas em clientes": "Turn visits into customers", "Um toque e o cliente fala consigo": "One tap and the customer is talking to you", "Bio, foto e destaques": "Bio, photo and highlights", "WhatsApp e marcações num toque": "WhatsApp and bookings in one tap", "Trabalhos": "Work", "Projetos que já criei": "Projects I've built", "Barbearia · site, equipa e marcações": "Barbershop · website, team and bookings", "Visitar o site": "Visit the website", "Tecnologia e reparações · catálogo e WhatsApp": "Tech and repairs · catalogue and WhatsApp", "Cabeleireiro e estética em Almada · marca e site": "Hair and beauty salon in Almada · brand and website", "Investimento": "Investment", "Escolha o plano": "Choose your plan", "Toque num plano para o selecionar. O total aparece em baixo.": "Tap a plan to select it. The total appears below.", "Presença Essencial": "Essential Presence", "Logótipo, cores e letras da marca": "Logo, brand colours and fonts", "Instagram organizado: bio, foto e destaques": "Organised Instagram: bio, photo and highlights", "Serviços e preços organizados": "Services and prices organised", "Perfil do Google revisto": "Google profile reviewed", "Pagamento único": "One-off payment", "Recomendado": "Recommended", "Presença Digital Completa": "Complete Digital Presence", "Tudo do plano Essencial": "Everything in the Essential plan", "Site profissional adaptado ao telemóvel": "Professional, mobile-friendly website", "Contacto e marcações ligados ao site": "Contact and bookings linked to the website", "WhatsApp, mapa, horário e avaliações": "WhatsApp, map, opening hours and reviews", "150 € para iniciar · 149 € na entrega": "€150 to start · €149 on delivery", "Acompanhamento mensal ·": "Monthly support ·", "Opcional. Alojamento do site, suporte, verificação do funcionamento e até 2 pequenas atualizações por mês. Cancela quando quiser.": "Optional. Website hosting, support, regular checks and up to 2 small updates per month. Cancel anytime.", "Como trabalho": "How I work", "Um projeto acompanhado do início ao fim": "A project I follow from start to finish", "Todo o projeto será acompanhado diretamente por mim, desde a definição da identidade visual até à publicação. O objetivo é criar uma solução profissional, fácil de utilizar e adaptada às necessidades reais do seu negócio.": "I will personally handle the whole project, from defining the visual identity to going live. The goal is a professional solution that is easy to use and fits your business's real needs.", "Desenvolvedor Web": "Web Developer", "Atendimento direto durante todo o projeto": "Direct contact throughout the project", "Solução personalizada para o negócio": "A solution tailored to your business", "Comunicação simples e acompanhamento próximo": "Simple communication and close follow-up", "Integração entre marca, site, WhatsApp e agenda": "Brand, website, WhatsApp and calendar working together", "Projeto adaptado ao telemóvel": "Built for mobile", "Orientação após a publicação": "Guidance after launch", "Estrutura fácil de atualizar e preparada para crescer": "Easy to update and ready to grow", "Aceita a proposta": "You accept the proposal", "Um toque em “Quero avançar” e combinamos o arranque.": "One tap on “Go ahead” and we arrange the start.", "Conversa de 15 min": "15-minute call", "Estilo, serviços, preços, fotografias e horários.": "Style, services, prices, photos and opening hours.", "Primeira versão": "First version", "Mostro-lhe o resultado e ajustamos juntos.": "I show you the result and we fine-tune it together.", "Site no ar": "Website live", "Publico tudo e explico como gerir as marcações.": "I publish everything and show you how to manage bookings.", "Perguntas frequentes": "FAQ", "Antes de decidir": "Before you decide", "E se já uso uma plataforma de marcações?": "What if I already use a booking platform?", "Continua a usá-la. O site e o Instagram passam a levar os clientes até ela num toque. Se não tiver nenhuma, posso configurar uma.": "Keep using it. Your website and Instagram will take customers to it in one tap. If you don't have one, I can set one up.", "O domínio e as contas ficam em nome de quem?": "Whose name are the domain and accounts in?", "Do seu negócio. Eu configuro tudo, mas a titularidade é sempre sua.": "Your business's. I set everything up, but you always own it.", "E se quiser mudar alguma coisa depois?": "What if I want to change something later?", "Com o acompanhamento mensal, até 2 pequenas atualizações por mês estão incluídas. Sem ele, cada alteração é orçamentada à parte.": "With monthly support, up to 2 small updates per month are included. Without it, each change is quoted separately.", "Vamos construir a nova imagem digital do seu negócio?": "Shall we build your business's new digital image?", "O próximo passo é uma conversa rápida comigo para conhecer melhor": "The next step is a quick chat with me to get to know", ", os serviços e a imagem que deseja transmitir.": ", your services and the image you want to convey.", "Quero avançar com o projeto": "I want to go ahead", "Tenho uma dúvida": "I have a question", "Copiar número": "Copy number", "Crio a presença digital de negócios locais: marca, site, Google e contacto, com acompanhamento direto do início ao fim.": "I build the digital presence of local businesses: brand, website, Google and contact, with direct support from start to finish.", "Presença digital": "Digital presence", "Criação de sites": "Website design", "Logótipo e identidade visual": "Logo and visual identity", "Perfil do Google": "Google profile", "Instagram profissional": "Professional Instagram", "Automação de processos": "Process automation", "Marcações e agenda online": "Online bookings and calendar", "Ligação ao WhatsApp": "WhatsApp integration", "Pedidos de orçamento pelo site": "Quote requests through the website", "Menos tarefas repetitivas": "Fewer repetitive tasks", "Nesta proposta": "In this proposal", "Projetos": "Projects", "Planos e valores": "Plans and pricing", "Atendimento direto comigo": "You deal with me directly", "Margem Sul e Grande Lisboa": "South Bank and Greater Lisbon", "Reuniões presenciais ou online": "Meetings in person or online", "Ronald Costa · Desenvolvimento Web, Presença Digital e Automação de Processos": "Ronald Costa · Web Development, Digital Presence and Process Automation", "Voltar ao topo ↑": "Back to top ↑", "Portfólio": "Portfolio", "Sites que": "Websites that", "trabalham pelo negócio": "work for the business", "Projetos e demonstrações que desenvolvi. Em projetos de clientes, algumas imagens foram trocadas por fotografias ilustrativas para preservar a identidade do negócio.": "Projects and demos I've built. In client projects, some images were replaced with stock photos to protect the business's identity.", "← Voltar à proposta": "← Back to the proposal", "Dúvida": "Question", "Quero avançar": "Go ahead", "Dar à barbearia a imagem digital que ela merece, para atrair mais clientes na zona. A Timmi continua nas marcações, como já funciona.": "Give the barbershop the digital image it deserves, to attract more local customers. Timmi stays in charge of bookings, just as it works today.", "A Timmi funciona, mas a página de marcações tem cores e disposição difíceis de ler": "Timmi works, but the booking page's colours and layout are hard to read", "O Instagram não mostra a qualidade do trabalho dos três barbeiros": "Instagram doesn't show the quality of the three barbers' work", "Não há um lugar único com serviços, equipa, avaliações e localização": "There's no single place with services, team, reviews and location", "Marca e Instagram com imagem de barbearia premium": "Brand and Instagram with a premium barbershop image", "Site com os três barbeiros, serviços, avaliações e localização": "Website with the three barbers, services, reviews and location", "Quem encontra a barbearia chega à Timmi num toque, sem mudar nada no dia a dia": "Anyone who finds the barbershop reaches Timmi in one tap, with no change to your routine", "Os três barbeiros com foto": "The three barbers with photos", "A subscrição da Timmi continua a ser paga diretamente pela barbearia e não está incluída nos valores.": "The Timmi subscription is still paid directly by the barbershop and is not included in these prices.", "Vamos construir a nova imagem digital da Barbershop Bandeira?": "Shall we build Barbershop Bandeira's new digital image?", "a barbearia": "the barbershop", "Criar de raiz a imagem digital do salão: marca, site, Google e Instagram, para que quem ouve falar de si a encontre e a escolha.": "Create the salon's digital image from scratch: brand, website, Google and Instagram, so that anyone who hears about you can find you and choose you.", "O salão ainda não tem presença digital: quem ouve falar de si não tem onde confirmar": "The salon has no digital presence yet: people who hear about you have nowhere to check", "Os trabalhos não estão reunidos num sítio para mostrar": "Your work isn't gathered in one place to show", "Novas clientes dependem só do passa-palavra": "New clients depend only on word of mouth", "A imagem oficial do salão, coerente em todo o lado": "The salon's official image, consistent everywhere", "Galeria com os seus trabalhos a vender por si": "A gallery of your work that sells for you", "As clientes encontram-na no Google e contactam num toque": "Clients find you on Google and get in touch in one tap", "Galeria dos seus trabalhos": "Gallery of your work", "O domínio e a eventual plataforma de marcações ficam em nome do salão e são apresentados à parte.": "The domain and any booking platform will be in the salon's name and are quoted separately.", "Vamos construir a nova imagem digital da Yola Pereira?": "Shall we build Yola Pereira's new digital image?", "o salão": "the salon", "Copiado": "Copied", "Número selecionado": "Number selected", "com acompanhamento": "with monthly support"};
+let LANG="pt"; try{ if(localStorage.getItem("lang")==="en") LANG="en"; }catch(e){}
+function trText(k){
+  if(EN[k]) return EN[k];
+  if(k.includes(" · ")){ const parts=k.split(" · "); if(parts.some(x=>EN[x])) return parts.map(x=>EN[x]||x).join(" · "); }
+  let o=k.replace(/ €\/mês/g," €/month").replace(/^Nº /,"No. ");
+  return o!==k?o:null;
+}
+function tr(){
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); let n;
+  while(n=w.nextNode()){
+    const p=n.parentElement; if(!p||p.closest("script,style")) continue;
+    if(n.__pt==null){ if(!/[A-Za-zÀ-ú]/.test(n.nodeValue)) continue; n.__pt=n.nodeValue; }
+    if(LANG==="pt"){ if(n.nodeValue!==n.__pt) n.nodeValue=n.__pt; continue; }
+    const m=n.__pt.match(/^(\s*)([\s\S]*?)(\s*)$/), key=m[2].replace(/\s+/g," "), en=trText(key);
+    const out=en?m[1]+en+m[3]:n.__pt; if(n.nodeValue!==out) n.nodeValue=out;
+  }
+  document.documentElement.lang=LANG==="en"?"en":"pt";
+  const lb=document.getElementById("langLbl"), bt=document.getElementById("langBtn");
+  if(lb){ lb.textContent=LANG==="en"?"PT":"EN"; bt.setAttribute("aria-label",LANG==="en"?"Mudar para português":"Change language to English"); }
+}
+
+/* ---------------- render ---------------- */
+const $ = id => document.getElementById(id);
+const eur = n => n.toLocaleString("pt-PT") + " €";
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let clientKey="default", selected=null;
+
+document.querySelectorAll(".photo").forEach(el=>el.style.backgroundImage=`url(${PHOTO})`);
+
+function shot(p){const pv=PREVIEWS[p.img]||{};return `<div class="stage" style="--glow:${p.glow||'#6B8AC9'}" aria-hidden="true">
+  <div class="laptop"><div class="lid"><div class="scr"><img src="${pv.d||''}" alt=""></div></div><div class="base"></div></div>
+  <div class="phone-m"><div class="pscr"><img src="${pv.m||''}" alt=""></div></div></div>`}
+function projCard(p){
+  const inner=`${shot(p)}<div class="pinfo"><b>${esc(p.name)}</b><span>${esc(p.type)}</span>${p.url?'<span class="go">Visitar o site <span class="arr">↗</span></span>':'<span class="go wip">Em desenvolvimento</span>'}</div>`;
+  return p.url?`<a class="proj" href="${esc(p.url)}" target="_blank" rel="noopener">${inner}</a>`:`<div class="proj">${inner}</div>`;
+}
+function renderStatic(){
+  $("myName").textContent=ME.name; $("myRole").textContent=ME.role;
+  $("steps").innerHTML=STEPS.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join("");
+  $("faq").innerHTML=FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+  $("allProjects").innerHTML=PROJECTS.map(projCard).join("");
+  $("monthlyPrice").textContent=eur(MONTHLY.price)+"/mês";
+  $("monthlyText").textContent="Opcional. "+MONTHLY.text;
+  $("numTxt").textContent=ME.whatsappShow;
+}
+function renderClient(){
+  const c=CLIENTS[clientKey];
+  $("refNo").textContent="Nº "+c.ref;
+  $("validity").textContent=c.validUntil?"Válida até "+new Date(c.validUntil+"T12:00").toLocaleDateString("pt-PT"):"";
+  $("heroTitle").innerHTML="Uma nova presença digital para <mark>"+esc(c.business||"o seu negócio")+"</mark>";
+  $("finalObj").textContent=c.place||"o seu negócio";
+  $("featured").innerHTML=PROJECTS.filter(p=>p.featured&&p.client!==clientKey).slice(0,3).map(projCard).join("");
+  $("allProjects").innerHTML=PROJECTS.filter(p=>p.client!==clientKey).map(projCard).join("");
+  $("lead").textContent=c.intro;
+  $("finalTitle").textContent=c.short?`Vamos construir a nova imagem digital ${c.short}?`:"Vamos construir a nova imagem digital do seu negócio?";
+  { const pr=PROJECTS.find(p=>p.img===(c.showcase||"barb"))||PROJECTS[0], pv=PREVIEWS[pr.img]||{};
+    $("showD").src=pv.d||""; $("showM").src=pv.m||""; $("showLink").href=$("showName").href=pr.url;
+    $("showName").textContent=pr.name+" ↗"; $("showLink").setAttribute("aria-label","Abrir o site "+pr.name);
+    document.querySelector(".showcase").style.setProperty("--glow",pr.glow); }
+
+  $("before").innerHTML=c.before.map(t=>`<li><span class="ic">!</span><span>${t}</span></li>`).join("");
+  $("after").innerHTML=c.after.map(t=>`<li><span class="ic">✓</span><span>${t}</span></li>`).join("");
+  if(!c.plans.includes(selected)) selected=c.recommended;
+  $("plans").innerHTML=c.plans.map(k=>{const p=PLANS[k],rec=k===c.recommended;return `
+    <button type="button" class="plan${rec?' rec':''}" data-plan="${k}" aria-pressed="${k===selected}">
+      ${rec&&c.plans.length>1?'<span class="pbadge">Recomendado</span>':''}
+      <div class="plan-head"><h3>${p.name}</h3><span class="radio"></span></div>
+      <div class="price">${p.price}<small> €</small></div>
+      <ul>${p.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+      <div class="pay">${p.pay}</div>
+    </button>`}).join("");
+  $("plansNote").textContent=c.note||"";
+  const multi=c.plans.length>1;
+  $("deliverables").innerHTML=DELIVERABLES.map((d,n)=>{
+    const tag=!multi?"":(d.plans.length>1?'<span class="ptag">Nos 2 planos</span>':'<span class="ptag only">Só no Completo</span>');
+    const items=d.items.map(x=>x==="{site}"?(c.siteItem||"Serviços, equipa e avaliações"):x);
+    return `<li class="fstep"><div class="fnum">${n+1}</div><div class="del"><div class="del-top"><div class="badge">${ICONS[d.icon]}</div>${tag}</div><div class="eyebrow">${d.label}</div><h3>${d.title}</h3><p class="outcome">${d.outcome}</p><ul>${items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></li>`;
+  }).join("");
+  document.querySelectorAll(".plan").forEach(b=>b.addEventListener("click",()=>{selected=b.dataset.plan;renderClient();}));
+  updateCTA();
+}
+const wa=t=>"https://wa.me/"+ME.whatsapp+"?text="+encodeURIComponent(t);
+function updateCTA(){
+  const c=CLIENTS[clientKey],p=PLANS[selected],m=$("monthly").checked;
+  $("ctaTotal").textContent=eur(p.price)+(m?" + "+MONTHLY.price+" €/mês":"");
+  $("ctaDetail").textContent=p.name+(m?" · com acompanhamento":"");
+  let accept,ask,talk;
+  if(LANG==="en"){
+    const who=c.business?" for "+c.business:"";
+    accept=`Hi Ronald! I saw the proposal${who} and I'd like to go ahead with the ${EN[p.name]||p.name} plan (€${p.price})${m?` + monthly support (€${MONTHLY.price}/month)`:""}. How do we proceed?`;
+    ask=`Hi Ronald! I saw the proposal${who} and I have a question:`;
+    talk=`Hi Ronald! I saw the proposal${who} and I'd like to talk to you.`;
+  } else {
+    const who=c.business?" para "+c.business:"";
+    accept=`Olá Ronald! Vi a proposta${who} e quero avançar com o plano ${p.name} (${eur(p.price)})${m?` + acompanhamento mensal (${MONTHLY.price} €/mês)`:""}. Como seguimos?`;
+    ask=`Olá Ronald! Vi a proposta${who} e tenho uma dúvida:`;
+    talk=`Olá Ronald! Vi a proposta${who} e gostaria de falar consigo.`;
+  }
+  document.querySelectorAll(".js-wa-accept").forEach(a=>a.href=wa(accept));
+  document.querySelectorAll(".js-wa-ask").forEach(a=>a.href=wa(ask));
+  document.querySelectorAll(".js-wa-talk").forEach(a=>a.href=wa(talk));
+  tr();
+}
+$("monthly").addEventListener("change",updateCTA);
+$("copyBtn").addEventListener("click",async()=>{
+  const b=$("copyBtn");
+  try{await navigator.clipboard.writeText(ME.whatsappShow);b.textContent="Copiado";tr();}
+  catch(e){const r=document.createRange();r.selectNodeContents($("numTxt"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Número selecionado";tr();}
+  setTimeout(()=>{b.textContent="Copiar número";tr();},2000);
+});
+
+function route(){
+  const h=(location.hash||"").slice(1).toLowerCase();
+  if(h==="planos"){ if(!selected) renderClient(); return; }
+  const port=h==="portfolio";
+  if(!port) clientKey=CLIENTS[h]?h:"default";
+  else { try{ const k=sessionStorage.getItem("clientKey"); if(k&&CLIENTS[k]) clientKey=k; }catch(e){} }
+  try{ sessionStorage.setItem("clientKey",clientKey); }catch(e){}
+  $("viewProposal").hidden=port; $("viewPortfolio").hidden=!port;
+  $("backBtn").href="#"+(clientKey==="default"?"":clientKey);
+  if(!port) renderClient();
+  tr();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+$("toPlans").addEventListener("click",e=>{e.preventDefault();$("planos").scrollIntoView({behavior:"smooth"});});
+renderStatic(); route();
+$("langBtn").addEventListener("click",()=>{ LANG=LANG==="en"?"pt":"en"; try{localStorage.setItem("lang",LANG);}catch(e){} updateCTA(); tr(); });
+
+
+/* ---------- animated background: drifting light + stars (original, canvas) ---------- */
+(function(){
+  const cv=document.getElementById("heroBg"); if(!cv) return;
+  const ctx=cv.getContext("2d"); const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W=0,H=0,dpr=Math.min(devicePixelRatio||1,2),stars=[],shoot=null,t=0,raf=0,visible=true;
+  const orbs=[ // colour, radius (×H), path centre, amplitude, speed, phase
+    {c:"212,168,87", r:.75, cx:.78, cy:.95, ax:.10, ay:.06, s:.00035, p:0,   a:.30},
+    {c:"107,138,201",r:.85, cx:.62, cy:.20, ax:.16, ay:.10, s:.00028, p:2,   a:.26},
+    {c:"143,168,218",r:.55, cx:.90, cy:.45, ax:.08, ay:.14, s:.00042, p:4,   a:.18},
+    {c:"58,78,140",  r:.95, cx:.25, cy:.70, ax:.12, ay:.08, s:.00022, p:1,   a:.30},
+    {c:"232,201,138",r:.35, cx:.55, cy:.80, ax:.18, ay:.05, s:.00050, p:3,   a:.14}];
+  function init(){
+    const r=cv.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    stars=[]; for(let i=0;i<Math.round(W*H/7000);i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.25,p:Math.random()*6.3,s:.01+Math.random()*.03});
+  }
+  function frame(now){
+    t=now||0; ctx.globalCompositeOperation="source-over"; ctx.globalAlpha=1;
+    const sky=ctx.createLinearGradient(0,0,W,H); sky.addColorStop(0,"#0A1122"); sky.addColorStop(1,"#121E38");
+    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation="lighter";
+    for(const o of orbs){ const x=W*(o.cx+o.ax*Math.sin(t*o.s+o.p)), y=H*(o.cy+o.ay*Math.cos(t*o.s*1.3+o.p)), R=H*o.r;
+      const g=ctx.createRadialGradient(x,y,0,x,y,R); g.addColorStop(0,`rgba(${o.c},${o.a})`); g.addColorStop(.5,`rgba(${o.c},${o.a*.35})`); g.addColorStop(1,`rgba(${o.c},0)`);
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H); }
+    ctx.globalCompositeOperation="source-over";
+    for(const s of stars){ ctx.globalAlpha=.25+.45*(.5+.5*Math.sin(t*s.s*.1+s.p)); ctx.fillStyle="#F5F1E8"; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill(); }
+    // occasional shooting star
+    if(!shoot && Math.random()<.004) shoot={x:W*(.3+Math.random()*.6),y:H*Math.random()*.4,l:0};
+    if(shoot){ shoot.l+=6; const L=Math.min(shoot.l,120), x=shoot.x-shoot.l, y=shoot.y+shoot.l*.35;
+      const g=ctx.createLinearGradient(x,y,x+L,y-L*.35); g.addColorStop(0,"rgba(245,241,232,.9)"); g.addColorStop(1,"rgba(245,241,232,0)");
+      ctx.globalAlpha=Math.max(0,1-shoot.l/260); ctx.strokeStyle=g; ctx.lineWidth=1.2; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+L,y-L*.35); ctx.stroke();
+      if(shoot.l>260) shoot=null; }
+    ctx.globalAlpha=1;
+    if(!reduce && visible) raf=requestAnimationFrame(frame);
+  }
+  init(); frame(performance.now());
+  addEventListener("resize",()=>{cancelAnimationFrame(raf);init();frame(performance.now());});
+  const wake=()=>{ if(visible&&!reduce){cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);} };
+  if("IntersectionObserver" in window) new IntersectionObserver(e=>{visible=e[0].isIntersecting;wake();}).observe(cv);
+  document.addEventListener("visibilitychange",()=>{visible=!document.hidden;wake();});
+})();
+
+/* ---------- optional video background: plays fundo.mp4 if it exists next to this page ---------- */
+(function(){
+  const v=document.getElementById("heroVideo"); if(!v) return;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const files=[["fundo.webm","video/webm"],["fundo.mp4","video/mp4"]].filter(f=>v.canPlayType(f[1]));
+  let k=0;
+  const next=()=>{ if(k>=files.length){ v.remove(); return; } v.src=files[k++][0]; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
+  v.addEventListener("playing",()=>v.classList.add("on"),{once:true});
+  v.addEventListener("error",next);
+  next();
+})();
+
+document.getElementById("yr").textContent=new Date().getFullYear();
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.go; if(id==="top"){scrollTo({top:0,behavior:"smooth"});return;} const el=document.getElementById(id); if(el) (el.closest("section")||el).scrollIntoView({behavior:"smooth",block:"start"});}));
+</script>
+
+</body>
+</html>

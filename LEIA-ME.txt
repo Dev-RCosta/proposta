@@ -1,0 +1,25 @@
+PROPOSTA DIGITAL · RONALD COSTA
+================================
+
+Estrutura
+  index.html        página completa (HTML, CSS e JavaScript)
+  fundo.mp4/.webm   vídeo de fundo do topo
+  assets/           foto de perfil e capturas dos projetos do portfólio
+
+Onde editar (no index.html, procure por "CONFIGURAÇÃO")
+  ME        nome, título, WhatsApp
+  PLANS     planos e preços
+  MONTHLY   acompanhamento mensal
+  PROJECTS  projetos do portfólio (nome, link, imagem, cor do brilho)
+  CLIENTS   uma entrada por cliente; o link da proposta termina em #chave
+            (ex.: .../proposta/#yola). Campos: business, short, place, ref,
+            plans, recommended, intro, before, after, note, siteItem, showcase
+  EN        traduções para inglês (texto em português -> texto em inglês)
+
+Ver no computador
+  Abra a pasta no VS Code e use a extensão Live Server
+  (clique direito no index.html -> "Open with Live Server").
+
+Publicar
+  Suba o conteúdo desta pasta para o repositório "proposta" no GitHub
+  e ative Settings -> Pages -> main / (root).
