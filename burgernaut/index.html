@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>The Burgernaut · Almada</title>
+<meta name="description" content="Smash burgers, frango crocante e milkshakes em Cacilhas, Almada. Peça online e receba a confirmação pelo WhatsApp.">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#0B0B0C;--bg-2:#121214;--card:#17171A;--card-2:#1E1E22;--line:#2A2A30;
+  --ink:#F6F1E7;--muted:#A9A39A;--dim:#77726B;
+  --gold:#F5B52E;--gold-2:#FFCB55;--gold-ink:#1A1204;
+  --wa:#25D366;--wa-ink:#062B14;--red:#E2553A;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:18px;--wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(var(--wrap),100% - 32px);margin-inline:auto}
+.display{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font:700 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--gold)}
+.muted{color:var(--muted)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:800;font-size:15px;transition:transform .15s ease,background .2s ease,box-shadow .2s ease;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:var(--gold);color:var(--gold-ink);box-shadow:0 10px 30px -12px #F5B52E99}
+.btn-gold:hover{background:var(--gold-2)}
+.btn-ghost{border:1.5px solid #ffffff38;color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-wa{background:var(--wa);color:var(--wa-ink)}
+.btn-wa:hover{filter:brightness(1.07)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* demo bar */
+.demo-bar{background:var(--gold);color:var(--gold-ink);text-align:center;font:600 12.5px/1.4 var(--sans);padding:8px 16px}
+.demo-bar b{font-weight:800}
+
+/* header */
+header.top{position:sticky;top:0;z-index:40;background:#0B0B0CE6;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #ffffff12}
+.top .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff}
+.brand svg{height:48px;width:auto}
+.nav{display:flex;gap:26px;margin-left:auto;font-weight:700;font-size:15px}
+.nav a{color:#E4DED3;transition:color .2s}
+.nav a:hover{color:var(--gold)}
+.lang{display:flex;border:1.5px solid #ffffff2e;border-radius:999px;padding:3px;font:800 12px/1 var(--sans)}
+.lang button{padding:8px 11px;border-radius:999px;color:var(--muted);letter-spacing:.06em}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.cart-btn{position:relative;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;background:var(--gold);color:var(--gold-ink);font-weight:800;font-size:14px}
+.cart-btn svg{width:20px;height:20px}
+.cart-btn .count{min-width:22px;height:22px;border-radius:999px;background:var(--gold-ink);color:var(--gold);display:grid;place-items:center;font-size:12px;padding:0 6px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(900px 500px at 78% 40%,#3A2A0F55,transparent 70%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);align-items:center;gap:40px;min-height:min(680px,calc(100svh - 110px));padding-block:48px}
+.hero h1{font-size:clamp(56px,8.4vw,112px);margin:18px 0 20px}
+.hero h1 span{color:var(--gold);display:block}
+.hero .lead{font-size:18px;color:#D6D0C5;max-width:30em}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#ffffff0d;border:1px solid #ffffff1a;font-size:13.5px;font-weight:700;color:#E9E3D8}
+.chip b{color:var(--gold)}
+.chip .stars{color:var(--gold);letter-spacing:1px}
+.hero-img{position:relative;justify-self:center;width:min(560px,100%);aspect-ratio:1}
+.hero-img img{width:100%;height:100%;object-fit:cover;border-radius:50%;box-shadow:0 40px 90px -30px #000,0 0 0 1px #ffffff14;animation:float 7s ease-in-out infinite}
+.hero-img::before{content:"";position:absolute;inset:-18px;border-radius:50%;border:1.5px dashed #F5B52E55;animation:spin 60s linear infinite}
+.badge-halal{position:absolute;left:-6px;bottom:8%;background:var(--ink);color:var(--bg);border-radius:16px;padding:12px 16px;box-shadow:0 20px 40px -18px #000;display:grid;gap:2px}
+.badge-halal b{font:400 26px/1 var(--display);letter-spacing:.02em}
+.badge-halal span{font-size:12px;font-weight:700;color:#5b564f}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.hero-img img,.hero-img::before{animation:none}}
+
+/* how it works */
+.how{border-block:1px solid #ffffff12;background:var(--bg-2)}
+.how .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.step{display:flex;gap:16px;align-items:flex-start;padding:28px 24px}
+.step+.step{border-left:1px solid #ffffff12}
+.step .n{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#F5B52E1c;color:var(--gold);font:400 22px/1 var(--display)}
+.step h3{font-size:16px;font-weight:800;margin-bottom:2px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* sections */
+.sec{padding-block:88px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px}
+.sec-head h2{font-size:clamp(44px,6vw,76px);margin-top:12px}
+.sec-head p{max-width:34em;color:var(--muted)}
+
+/* menu */
+.tabs-wrap{position:sticky;top:72px;z-index:30;background:linear-gradient(var(--bg) 78%,transparent);padding:10px 0 16px;margin-bottom:10px}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);font-weight:800;font-size:14px;color:#DAD4C9;transition:all .2s}
+.tab:hover{border-color:#F5B52E88}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.cat{scroll-margin-top:150px;margin-top:34px}
+.cat h3{font:400 30px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.cat h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.item:hover{border-color:#F5B52E66;transform:translateY(-3px)}
+.item .ph{position:relative;aspect-ratio:1;background:#222;overflow:hidden}
+.item .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.item:hover .ph img{transform:scale(1.05)}
+.tag{position:absolute;top:12px;left:12px;background:var(--gold);color:var(--gold-ink);font:800 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:7px 10px;border-radius:999px}
+.item .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.item h4{font-size:17px;font-weight:800;line-height:1.25}
+.item .desc{font-size:13.5px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.item .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:8px}
+.price{font:800 18px/1 var(--sans);color:var(--gold);font-variant-numeric:tabular-nums}
+.add{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:800;font-size:14px;transition:background .2s}
+.add:hover{background:var(--gold)}
+.add svg{width:16px;height:16px}
+.stepper{display:inline-flex;align-items:center;height:40px;border-radius:999px;background:var(--gold);color:var(--gold-ink);font-weight:800}
+.stepper button{width:38px;height:40px;display:grid;place-items:center;font-size:20px;line-height:1}
+.stepper span{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.row .t{flex:1;min-width:0}
+.row h4{font-size:15.5px;font-weight:800}
+.row p{font-size:13px;color:var(--muted)}
+.row .price{font-size:16px}
+.note-prices{margin-top:26px;font-size:13px;color:var(--dim);font-style:italic}
+
+/* apps */
+.apps{background:var(--bg-2);border-block:1px solid #ffffff12}
+.apps .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center;padding-block:44px}
+.apps h2{font-size:clamp(30px,3.6vw,42px)}
+.apps p{color:var(--muted);margin-top:8px}
+.app-links{display:flex;flex-wrap:wrap;gap:10px}
+.app-links a{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 20px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);font-weight:800;transition:border-color .2s,transform .2s}
+.app-links a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.app-links i{width:12px;height:12px;border-radius:50%}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.about-photos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r)}
+.about-photos img:last-child{margin-top:40px}
+.about h2{font-size:clamp(44px,5.6vw,72px);margin:12px 0 20px}
+.about p{color:#D6D0C5;font-size:17px;margin-bottom:14px;max-width:34em}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.fact b{display:block;font:400 30px/1 var(--display);color:var(--gold);margin-bottom:6px}
+.fact span{font-size:13px;color:var(--muted);font-weight:600}
+
+/* reviews */
+.reviews{background:var(--bg-2)}
+.score{display:flex;align-items:center;gap:16px}
+.score b{font:400 64px/1 var(--display);color:var(--gold)}
+.score .stars{color:var(--gold);font-size:20px;letter-spacing:2px}
+.score small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.quote{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px}
+.quote .stars{color:var(--gold);letter-spacing:2px}
+.quote p{font-size:17px;line-height:1.5}
+.quote cite{margin-top:auto;font-style:normal;font-size:13px;color:var(--muted);font-weight:700}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.gallery a{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:9/14;background:#222}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery a:hover img{transform:scale(1.05)}
+
+/* find */
+.find .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.find-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:18px}
+.find-card h2{font-size:clamp(40px,5vw,60px)}
+.info{display:grid;gap:14px}
+.info div{display:flex;gap:14px;align-items:flex-start}
+.info svg{width:22px;height:22px;color:var(--gold);flex:none;margin-top:2px}
+.info b{display:block;font-weight:800}
+.info span{color:var(--muted);font-size:15px}
+.find-photo{position:relative;border-radius:22px;overflow:hidden;min-height:320px}
+.find-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+footer{border-top:1px solid #ffffff12;padding:34px 0 110px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;font-size:14px;color:var(--muted)}
+footer .brand svg{height:40px}
+footer .credit a{color:var(--gold);font-weight:700}
+
+/* mobile order bar */
+.mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;display:none}
+.mbar button{width:100%;display:flex;align-items:center;justify-content:space-between;height:58px;padding:0 20px;border-radius:18px;background:var(--gold);color:var(--gold-ink);font-weight:800;box-shadow:0 20px 40px -12px #000}
+.mbar .l{display:flex;align-items:center;gap:10px}
+.mbar .count{min-width:26px;height:26px;border-radius:999px;background:var(--gold-ink);color:var(--gold);display:grid;place-items:center;font-size:13px;padding:0 7px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:#000a;z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--bg-2);border-left:1px solid var(--line);z-index:61;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+body.open .scrim{opacity:1;pointer-events:auto}
+body.open .drawer{transform:none}
+body.open{overflow:hidden}
+.d-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
+.d-head h2{font:400 30px/1 var(--display);text-transform:uppercase}
+.x{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--card-2);font-size:22px}
+.d-body{flex:1;overflow-y:auto;padding:18px 22px 24px;display:flex;flex-direction:column;gap:22px}
+.empty{text-align:center;padding:50px 10px;color:var(--muted)}
+.empty b{display:block;font:400 26px/1.1 var(--display);color:var(--ink);text-transform:uppercase;margin-bottom:8px}
+.lines{display:grid;gap:10px}
+.line{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+.line img,.line .ph0{width:56px;height:56px;border-radius:10px;object-fit:cover;background:#26262b;display:grid;place-items:center;color:var(--gold);font:400 20px/1 var(--display)}
+.line h4{font-size:14.5px;font-weight:800;line-height:1.25}
+.line .p{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.line .stepper{height:36px}
+.line .stepper button{width:32px;height:36px;font-size:18px}
+.field-title{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);text-align:left}
+.seg button b{font-size:15px}
+.seg button span{font-size:12.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{border-color:var(--gold);background:#F5B52E14}
+.seg.three{grid-template-columns:repeat(3,1fr)}
+.seg.three button{align-items:center;text-align:center;padding:12px 6px;font-weight:800;font-size:14px}
+.fields{display:grid;gap:10px}
+.fields label[hidden]{display:none}
+.fields label{display:grid;gap:6px;font-size:13px;font-weight:700;color:#D8D2C7}
+.fields input,.fields textarea,.fields select{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--ink);font:500 15px var(--sans)}
+.fields textarea{min-height:74px;resize:vertical}
+.fields input:focus,.fields textarea:focus,.fields select:focus{outline:none;border-color:var(--gold)}
+.fields .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{border-color:var(--red)!important}
+.totals{display:grid;gap:6px;font-size:14.5px}
+.totals div{display:flex;justify-content:space-between}
+.totals .grand{font-size:18px;font-weight:800;padding-top:8px;border-top:1px solid var(--line);margin-top:4px}
+.totals .grand span:last-child{color:var(--gold)}
+.d-foot{padding:16px 22px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:grid;gap:10px;background:var(--bg-2)}
+.d-foot .btn{width:100%;min-height:56px;font-size:16px}
+.demo-note{font-size:12px;color:var(--dim);text-align:center;line-height:1.45}
+.preview{background:#0f1a14;border:1px solid #1f3a2a;border-radius:14px;padding:14px;font:500 13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#cfe9d8;max-height:220px;overflow:auto}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom));max-width:calc(100% - 32px);text-align:center;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-weight:800;font-size:14px;padding:12px 18px;border-radius:999px;z-index:70;opacity:0;transition:all .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1060px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .nav{display:none}
+  .lang{margin-left:auto}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);text-align:left;gap:26px;padding-block:28px 44px;min-height:0}
+  .hero-img{order:-1;width:min(300px,72%)}
+  .hero h1{margin:12px 0 14px}
+  .how .wrap{grid-template-columns:minmax(0,1fr)}
+  .step+.step{border-left:0;border-top:1px solid #ffffff12}
+  .step{padding:18px 4px}
+  .about .wrap,.find .wrap{grid-template-columns:minmax(0,1fr);gap:30px}
+  .quotes{grid-template-columns:minmax(0,1fr)}
+  .apps .wrap{grid-template-columns:minmax(0,1fr)}
+  .list{grid-template-columns:minmax(0,1fr)}
+  .mbar{display:block}
+  .mbar[hidden]{display:none}
+  .top .cart-btn .lbl{display:none}
+}
+@media (max-width:640px){
+  .sec{padding-block:64px}
+  .top .wrap{height:64px;gap:12px}
+  .brand svg{height:40px}
+  .tabs-wrap{top:64px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .item .body{padding:12px 12px 14px;gap:6px}
+  .item h4{font-size:15px}
+  .item .desc{font-size:12.5px;-webkit-line-clamp:2}
+  .item .foot{flex-direction:column;align-items:stretch;gap:10px}
+  .add,.item .stepper{justify-content:center;width:100%}
+  .item .stepper{justify-content:space-between}
+  .price{font-size:16px}
+  .facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
+  .fact{padding:12px}
+  .fact b{font-size:24px}
+  .find-card{padding:24px}
+  .hero .ctas .btn{flex:1}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery a:nth-child(n+5){display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar" data-i18n="demo">Demonstração criada por <b>Ronald Costa</b> para a The Burgernaut · fotografias do Instagram e da Glovo</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="The Burgernaut"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112"><path fill="currentColor" fill-rule="evenodd" d="M49.38 78.75L49.00 79.25L49.25 81.12L48.88 86.12L49.00 96.62L49.50 97.12L56.38 96.75L56.88 96.25L56.50 95.12L56.50 93.88L56.12 93.50L53.62 93.88L52.62 93.62L52.00 92.88L52.12 89.50L52.88 88.88L55.12 89.12L55.62 88.75L55.75 86.75L55.38 86.00L53.00 86.00L52.12 85.38L52.00 82.50L52.50 81.88L53.25 81.62L56.38 81.88L56.75 81.25L56.88 79.50L55.75 78.75ZM28.12 77.62L28.00 78.50L28.38 81.12L28.12 84.62L28.12 100.75L29.62 100.75L31.00 100.12L31.38 99.62L31.00 96.75L31.38 91.88L31.75 91.38L32.25 91.38L32.75 91.88L33.88 95.25L34.25 99.12L34.75 99.50L35.50 99.50L37.88 98.75L38.00 98.12L36.88 96.00L36.38 92.88L35.50 90.12L35.88 88.62L37.25 87.00L37.88 87.25L38.12 88.00L38.38 94.62L39.00 96.25L40.12 97.25L41.38 97.88L44.38 98.00L45.50 97.38L46.50 96.25L47.25 94.75L47.25 88.50L47.62 87.12L47.12 86.50L43.75 86.50L43.25 87.00L43.25 88.50L44.38 90.25L44.62 92.00L44.25 93.50L43.38 94.25L42.62 94.25L41.62 93.12L41.25 86.25L41.75 83.50L42.38 82.50L43.25 82.00L44.50 82.00L46.00 82.75L46.50 82.75L46.88 82.38L47.00 80.62L46.50 79.50L45.25 78.62L43.88 78.25L41.62 78.62L39.88 80.00L38.75 82.25L38.25 82.62L37.75 82.12L36.75 80.00L34.50 78.25L29.62 77.38ZM32.25 81.25L33.12 81.38L34.00 82.12L34.50 83.62L34.25 85.88L32.62 87.50L31.88 87.50L31.25 86.75L31.25 82.38L31.62 81.62ZM84.88 77.50L84.38 77.12L82.00 77.38L81.38 77.62L80.88 78.25L80.75 80.38L79.12 88.62L78.50 94.62L78.12 96.38L77.62 97.25L77.12 97.00L76.88 96.00L76.88 91.25L77.25 86.88L77.00 83.00L77.25 78.38L77.00 78.00L75.12 77.88L74.00 78.50L74.12 84.25L73.62 85.25L72.75 84.25L71.12 79.00L70.50 78.50L68.62 78.50L67.88 79.00L68.25 84.38L68.25 95.25L67.75 96.25L67.25 96.25L66.62 95.38L65.12 89.62L65.25 88.25L66.38 86.62L67.00 84.88L67.00 82.25L66.38 80.75L64.88 79.25L63.25 78.75L58.25 78.75L57.75 79.25L58.00 80.88L57.75 81.88L57.88 95.12L57.38 96.25L57.50 96.62L58.62 97.12L60.62 97.12L60.88 96.88L60.62 94.50L60.75 90.62L61.62 89.75L62.25 90.62L63.50 96.25L64.00 97.12L68.12 97.88L70.88 98.00L71.12 97.62L70.88 90.62L71.25 90.00L71.62 90.00L72.62 91.88L73.12 95.50L73.88 98.00L74.38 98.62L76.50 98.88L78.12 99.75L80.25 100.12L81.00 99.38L80.88 97.25L81.38 95.50L82.00 95.00L83.12 95.00L84.12 96.12L84.38 100.25L84.62 100.62L86.00 101.00L87.25 101.75L88.00 101.75L88.25 101.00L87.75 99.75L87.62 95.25L86.88 93.12L86.12 86.50L85.12 81.12ZM82.50 87.62L83.00 87.88L83.50 89.12L83.50 90.50L83.00 91.12L82.25 91.00L81.88 90.38L81.88 89.12ZM61.50 81.50L62.88 81.75L63.50 82.38L63.88 83.38L63.62 85.25L62.00 86.50L61.38 86.38L60.88 85.75L60.88 82.25ZM17.25 75.62L16.88 76.12L17.12 77.62L17.25 99.88L17.88 101.12L19.00 102.25L20.25 102.88L21.38 102.88L23.50 102.12L25.25 100.50L26.50 97.50L26.75 79.00L27.12 77.62L26.25 77.00L23.88 76.75L23.38 77.25L23.62 78.50L23.25 81.75L23.50 94.50L22.75 97.38L22.12 98.00L21.38 98.12L20.50 96.88L20.25 94.50L20.62 76.50L20.00 75.88ZM4.62 71.62L4.00 72.25L4.50 75.12L4.25 79.75L4.38 85.38L3.50 87.12L3.50 88.12L4.25 89.50L4.62 91.00L4.62 99.75L4.25 101.75L4.50 107.38L4.25 108.88L4.50 109.25L5.00 109.25L9.00 107.25L11.00 106.62L13.75 104.12L14.88 102.25L15.62 100.00L15.88 95.88L15.50 93.88L15.50 92.00L14.88 90.50L13.38 88.38L13.62 87.38L14.75 85.75L15.25 82.75L15.12 79.50L14.50 77.00L13.50 75.25L12.00 73.88L7.38 72.12ZM10.50 91.38L11.75 92.38L12.38 94.38L12.25 97.88L11.38 100.12L9.88 101.38L9.12 101.75L8.38 101.75L7.88 101.12L7.75 99.50L7.88 92.50L8.88 91.38ZM8.50 77.75L9.88 78.12L11.12 79.38L11.88 81.38L11.88 83.25L11.38 84.88L10.38 86.12L9.25 86.62L8.25 86.38L7.75 85.25L7.88 78.50ZM108.88 71.50L108.12 71.50L103.88 72.88L95.50 75.00L94.50 75.62L94.88 77.75L94.62 82.75L94.75 95.50L94.38 97.50L93.62 98.62L93.00 98.62L92.12 97.88L91.50 94.62L91.62 78.00L91.88 76.50L91.38 76.12L90.50 76.12L88.88 76.62L88.38 77.38L88.50 81.88L88.25 84.38L88.12 97.38L89.38 100.62L91.50 102.88L93.50 103.75L95.12 103.50L96.50 102.25L97.75 99.00L98.00 95.00L97.75 83.38L98.00 81.25L99.00 80.00L100.75 78.88L101.50 78.88L102.12 79.50L102.12 87.38L101.12 89.12L101.12 89.62L102.00 91.12L102.00 101.38L101.50 106.75L102.50 107.75L104.38 108.50L105.25 108.12L105.12 104.75L105.38 103.00L105.25 99.62L105.62 96.62L105.62 91.62L106.62 89.38L106.62 88.75L105.75 87.00L105.62 78.88L106.50 77.88L107.50 77.88L109.00 78.88L109.38 78.62L109.50 77.75L109.12 75.25L109.38 72.00ZM58.00 70.75L57.50 70.62L56.62 71.62L56.25 71.62L55.38 70.75L54.50 71.00L54.38 73.75L54.62 74.62L55.38 74.75L56.25 74.00L56.62 74.00L57.50 74.88L58.12 74.50L58.38 71.38ZM60.62 70.25L59.88 71.12L59.88 74.12L60.62 75.12L62.25 75.25L62.75 74.75L61.88 73.75L61.62 73.00L62.88 70.75L62.38 70.25ZM50.50 70.25L50.12 70.50L50.00 71.12L50.88 72.50L51.00 74.38L51.25 74.75L51.75 74.75L52.12 74.25L52.12 72.75L53.00 70.75L52.38 70.25ZM23.88 57.38L24.12 60.12L25.00 62.12L26.88 64.25L29.12 65.50L83.62 65.62L85.50 65.00L86.75 63.75L88.38 61.12L89.12 58.38L89.00 56.88L88.62 56.12L87.38 55.25L29.25 55.25L25.12 55.75L24.12 56.50ZM23.50 45.50L23.62 48.12L24.38 50.75L25.25 52.12L26.38 53.12L28.25 53.62L85.12 53.62L86.38 53.25L88.12 51.38L89.00 49.50L89.50 46.50L89.25 44.62L88.62 43.12L87.62 42.00L85.50 41.38L67.25 41.00L32.12 41.00L26.50 41.25L25.50 41.62L24.50 42.50ZM25.25 46.38L25.88 45.00L26.50 44.38L27.62 43.88L29.12 43.88L30.88 44.50L35.00 45.12L40.75 45.50L46.50 43.62L52.62 43.38L58.25 44.12L62.12 45.75L63.25 45.75L64.25 45.12L65.12 45.12L67.75 46.75L69.25 47.25L69.50 47.00L69.25 44.88L70.00 44.25L71.75 44.25L76.75 45.00L79.88 45.00L82.38 44.62L84.25 44.00L85.62 44.00L86.75 44.88L87.38 46.00L87.50 47.88L87.00 49.50L85.62 50.88L80.62 51.25L64.38 51.62L29.88 51.00L27.12 50.62L26.00 49.50L25.50 48.50ZM21.38 34.62L21.50 35.25L21.88 35.50L24.75 35.88L25.50 36.38L24.75 38.00L25.00 38.75L33.25 39.00L74.00 39.12L76.25 38.88L87.12 38.88L87.75 38.50L87.75 37.88L87.00 36.75L87.38 36.00L88.12 35.75L90.12 35.75L91.00 35.25L91.00 34.50L90.62 34.12L88.88 33.38L86.75 33.00L85.38 33.25L82.00 35.12L78.00 36.38L76.38 36.38L71.00 35.12L67.88 34.88L61.50 35.12L54.25 36.62L51.88 36.50L46.12 35.00L41.50 34.88L34.38 36.38L32.12 35.88L30.12 34.88L28.88 33.88L26.12 33.00L23.00 33.50L21.75 34.12ZM70.00 32.12L70.50 32.88L74.00 34.62L75.38 35.00L79.62 34.75L82.38 33.75L83.25 32.88L83.12 32.25L82.50 31.88L78.88 31.38L70.62 31.50ZM45.88 32.00L45.88 32.50L46.25 32.88L50.25 34.75L52.50 35.12L55.00 35.12L56.75 34.75L63.25 32.62L63.62 32.25L63.00 31.75L57.50 31.75L52.38 31.38L46.75 31.50ZM29.12 32.88L29.75 33.62L31.88 34.75L34.50 35.12L36.38 34.62L40.25 32.88L40.62 32.50L40.62 32.00L40.00 31.62L32.50 31.38L29.62 31.88L29.12 32.25ZM23.88 23.75L24.00 26.75L25.25 28.62L27.25 29.50L45.12 30.00L68.62 29.62L85.88 29.75L88.00 28.25L89.00 26.00L88.75 22.25L86.75 17.88L83.88 14.00L79.50 10.25L76.25 8.12L72.62 6.38L69.50 5.25L64.00 4.00L58.88 3.50L53.00 3.62L46.25 4.75L41.50 6.25L36.50 8.62L31.62 12.00L27.62 16.12L24.88 20.62ZM43.00 20.25L43.75 19.62L44.62 19.62L44.88 19.88L44.88 20.50L44.12 21.00L43.25 20.88ZM52.88 12.25L53.75 11.50L54.25 11.50L54.62 11.88L54.62 12.38L53.88 12.88L53.12 12.75Z"/></svg></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#menu" data-i18n="nav.menu">Menu</a>
+      <a href="#sobre" data-i18n="nav.about">Sobre nós</a>
+      <a href="#avaliacoes" data-i18n="nav.reviews">Avaliações</a>
+      <a href="#onde" data-i18n="nav.find">Onde estamos</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="cart-btn js-open" type="button" aria-label="Ver pedido">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="lbl" data-i18n="cart.btn">O meu pedido</span>
+      <span class="count js-count">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Cacilhas · Almada</span>
+      <h1 class="display"><span data-i18n="hero.h1a">Artesanal.</span><span data-i18n="hero.h1b">Qualidade.</span><span data-i18n="hero.h1c">Sabor.</span></h1>
+      <p class="lead" data-i18n="hero.lead">Smash burgers, frango crocante e milkshakes feitos na hora. Escolha no menu, peça para entrega ou take-away e o pedido chega-nos direto pelo WhatsApp.</p>
+      <div class="ctas">
+        <a class="btn btn-gold" href="#menu"><span data-i18n="hero.cta">Fazer pedido</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#apps" data-i18n="hero.apps">Prefiro uma app</a>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="stars">★★★★★</span> <b>4,9</b> <span data-i18n="hero.google">no Google · 260 avaliações</span></span>
+        <span class="chip" data-i18n="hero.modes">Comer no local · Take-away · Entrega</span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="img/hero.webp" alt="Smash Burgernaut Triple" width="1400" height="1400" fetchpriority="high">
+      <div class="badge-halal"><b>100% HALAL</b><span data-i18n="hero.halal">Certificado IHP</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" aria-label="Como funciona">
+  <div class="wrap">
+    <div class="step"><span class="n">1</span><div><h3 data-i18n="how.1t">Escolha no menu</h3><p data-i18n="how.1p">Adicione hambúrgueres, extras e bebidas ao pedido.</p></div></div>
+    <div class="step"><span class="n">2</span><div><h3 data-i18n="how.2t">Entrega ou take-away</h3><p data-i18n="how.2p">Indique a morada ou a hora a que passa a levantar.</p></div></div>
+    <div class="step"><span class="n">3</span><div><h3 data-i18n="how.3t">Enviado pelo WhatsApp</h3><p data-i18n="how.3p">O pedido chega-nos detalhado e confirmamos logo consigo.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow" data-i18n="menu.eyebrow">O nosso menu</span><h2 class="display" data-i18n="menu.h2">Escolha o seu</h2></div>
+      <p data-i18n="menu.p">Pão brioche, carne fresca moída na hora e molhos da casa. Toque em “Adicionar” e envie o pedido quando estiver pronto.</p>
+    </div>
+    <div class="tabs-wrap"><div class="tabs js-tabs" role="tablist"></div></div>
+    <div class="js-menu"></div>
+    <p class="note-prices" data-i18n="menu.note">Demonstração com o menu e os preços publicados na Glovo. No site final, os preços são os da casa.</p>
+  </div>
+</section>
+
+<section class="apps" id="apps">
+  <div class="wrap">
+    <div>
+      <h2 class="display" data-i18n="apps.h2">Prefere pedir por uma app?</h2>
+      <p data-i18n="apps.p">Também estamos na Uber Eats, na Glovo e na Bolt Food. Pedir aqui pelo site vai direto para nós, sem intermediários.</p>
+    </div>
+    <div class="app-links">
+      <a href="https://www.ubereats.com/pt/store/the-burgernaut/bpeS4JeKSPu58b3koKCRwQ" target="_blank" rel="noopener"><i style="background:#06C167"></i>Uber Eats</a>
+      <a href="https://glovoapp.com/pt/pt/almada/the-burgernaut-amd/" target="_blank" rel="noopener"><i style="background:#FFC244"></i>Glovo</a>
+      <a href="https://food.bolt.eu/en/386-lisbon/p/126279-the-burgernaut/" target="_blank" rel="noopener"><i style="background:#34D186"></i>Bolt Food</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec about" id="sobre">
+  <div class="wrap">
+    <div class="about-photos">
+      <img src="img/ig-11.webp" alt="Fachada da The Burgernaut em Cacilhas" loading="lazy">
+      <img src="img/ig-4.webp" alt="Esplanada da The Burgernaut" loading="lazy">
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="about.eyebrow">Sobre nós</span>
+      <h2 class="display" data-i18n="about.h2">Feito na hora, em Cacilhas</h2>
+      <p data-i18n="about.p1">A The Burgernaut é uma hamburgueria gourmet na Rua Cândido dos Reis, a dois passos do cais de Cacilhas. Hambúrgueres em pão brioche, frango panado na hora, batatas estaladiças com tempero cajun e milkshakes cremosos.</p>
+      <p data-i18n="about.p2">Tudo 100% Halal, certificado pelo Instituto Halal de Portugal. Venha comer connosco, leve para casa ou peça com entrega.</p>
+      <div class="facts">
+        <div class="fact"><b>4,9★</b><span data-i18n="about.f1">260 avaliações no Google</span></div>
+        <div class="fact"><b>100%</b><span data-i18n="about.f2">Halal certificado</span></div>
+        <div class="fact"><b>3</b><span data-i18n="about.f3">Local, take-away e entrega</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec reviews" id="avaliacoes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow" data-i18n="rev.eyebrow">Avaliações</span><h2 class="display" data-i18n="rev.h2">O que dizem de nós</h2></div>
+      <div class="score"><b>4,9</b><div><span class="stars">★★★★★</span><small data-i18n="rev.small">260 avaliações no Google</small></div></div>
+    </div>
+    <div class="quotes">
+      <figure class="quote"><span class="stars">★★★★★</span><p data-i18n="rev.q1">“Os hambúrgueres são excelentes, suculentos e saborosos. O atendimento é impecável.”</p><cite>Luis G. · Google</cite></figure>
+      <figure class="quote"><span class="stars">★★★★★</span><p data-i18n="rev.q2">“O espaço é acolhedor, o staff é super simpático e a comida é top.”</p><cite data-i18n="rev.c">Cliente · Google</cite></figure>
+      <figure class="quote"><span class="stars">★★★★★</span><p data-i18n="rev.q3">“A carne estava suculenta, o pão macio e os ingredientes frescos.”</p><cite data-i18n="rev.c">Cliente · Google</cite></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Instagram</span><h2 class="display">@the_burgernaut</h2></div>
+      <a class="btn btn-ghost" href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener" data-i18n="ig.follow">Seguir no Instagram</a>
+    </div>
+    <div class="gallery">
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-2.webp" alt="Hambúrguer de frango com batatas" loading="lazy"></a>
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-5.webp" alt="Smash burger com queijo derretido" loading="lazy"></a>
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-3.webp" alt="Smash cheeseburger" loading="lazy"></a>
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-10.webp" alt="Milkshakes The Burgernaut" loading="lazy"></a>
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-7.webp" alt="Hambúrgueres e milkshakes em Almada" loading="lazy"></a>
+      <a href="https://www.instagram.com/the_burgernaut/" target="_blank" rel="noopener"><img src="img/ig-8.webp" alt="Smash burgers na chapa" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec find" id="onde" style="padding-top:0">
+  <div class="wrap">
+    <div class="find-card">
+      <span class="eyebrow" data-i18n="find.eyebrow">Onde estamos</span>
+      <h2 class="display" data-i18n="find.h2">Venha provar</h2>
+      <div class="info">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><b>R. Cândido dos Reis 14</b><span>2800-269 Almada (Cacilhas)</span></div></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div><b><a href="tel:+351920751382">920 751 382</a></b><span data-i18n="find.tel">Chamada para rede móvel nacional</span></div></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><div><b data-i18n="find.modes">Comer no local · Take-away · Entrega</b><span data-i18n="find.halal">100% Halal</span></div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+        <a class="btn btn-gold" href="https://maps.app.goo.gl/2RQ2JAE5D8vWNXJC7" target="_blank" rel="noopener" data-i18n="find.maps">Abrir no Google Maps</a>
+        <a class="btn btn-ghost" href="#menu" data-i18n="hero.cta">Fazer pedido</a>
+      </div>
+    </div>
+    <div class="find-photo"><img src="img/cover.webp" alt="Hambúrgueres, asas e batatas da The Burgernaut" loading="lazy"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="The Burgernaut"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112"><path fill="currentColor" fill-rule="evenodd" d="M49.38 78.75L49.00 79.25L49.25 81.12L48.88 86.12L49.00 96.62L49.50 97.12L56.38 96.75L56.88 96.25L56.50 95.12L56.50 93.88L56.12 93.50L53.62 93.88L52.62 93.62L52.00 92.88L52.12 89.50L52.88 88.88L55.12 89.12L55.62 88.75L55.75 86.75L55.38 86.00L53.00 86.00L52.12 85.38L52.00 82.50L52.50 81.88L53.25 81.62L56.38 81.88L56.75 81.25L56.88 79.50L55.75 78.75ZM28.12 77.62L28.00 78.50L28.38 81.12L28.12 84.62L28.12 100.75L29.62 100.75L31.00 100.12L31.38 99.62L31.00 96.75L31.38 91.88L31.75 91.38L32.25 91.38L32.75 91.88L33.88 95.25L34.25 99.12L34.75 99.50L35.50 99.50L37.88 98.75L38.00 98.12L36.88 96.00L36.38 92.88L35.50 90.12L35.88 88.62L37.25 87.00L37.88 87.25L38.12 88.00L38.38 94.62L39.00 96.25L40.12 97.25L41.38 97.88L44.38 98.00L45.50 97.38L46.50 96.25L47.25 94.75L47.25 88.50L47.62 87.12L47.12 86.50L43.75 86.50L43.25 87.00L43.25 88.50L44.38 90.25L44.62 92.00L44.25 93.50L43.38 94.25L42.62 94.25L41.62 93.12L41.25 86.25L41.75 83.50L42.38 82.50L43.25 82.00L44.50 82.00L46.00 82.75L46.50 82.75L46.88 82.38L47.00 80.62L46.50 79.50L45.25 78.62L43.88 78.25L41.62 78.62L39.88 80.00L38.75 82.25L38.25 82.62L37.75 82.12L36.75 80.00L34.50 78.25L29.62 77.38ZM32.25 81.25L33.12 81.38L34.00 82.12L34.50 83.62L34.25 85.88L32.62 87.50L31.88 87.50L31.25 86.75L31.25 82.38L31.62 81.62ZM84.88 77.50L84.38 77.12L82.00 77.38L81.38 77.62L80.88 78.25L80.75 80.38L79.12 88.62L78.50 94.62L78.12 96.38L77.62 97.25L77.12 97.00L76.88 96.00L76.88 91.25L77.25 86.88L77.00 83.00L77.25 78.38L77.00 78.00L75.12 77.88L74.00 78.50L74.12 84.25L73.62 85.25L72.75 84.25L71.12 79.00L70.50 78.50L68.62 78.50L67.88 79.00L68.25 84.38L68.25 95.25L67.75 96.25L67.25 96.25L66.62 95.38L65.12 89.62L65.25 88.25L66.38 86.62L67.00 84.88L67.00 82.25L66.38 80.75L64.88 79.25L63.25 78.75L58.25 78.75L57.75 79.25L58.00 80.88L57.75 81.88L57.88 95.12L57.38 96.25L57.50 96.62L58.62 97.12L60.62 97.12L60.88 96.88L60.62 94.50L60.75 90.62L61.62 89.75L62.25 90.62L63.50 96.25L64.00 97.12L68.12 97.88L70.88 98.00L71.12 97.62L70.88 90.62L71.25 90.00L71.62 90.00L72.62 91.88L73.12 95.50L73.88 98.00L74.38 98.62L76.50 98.88L78.12 99.75L80.25 100.12L81.00 99.38L80.88 97.25L81.38 95.50L82.00 95.00L83.12 95.00L84.12 96.12L84.38 100.25L84.62 100.62L86.00 101.00L87.25 101.75L88.00 101.75L88.25 101.00L87.75 99.75L87.62 95.25L86.88 93.12L86.12 86.50L85.12 81.12ZM82.50 87.62L83.00 87.88L83.50 89.12L83.50 90.50L83.00 91.12L82.25 91.00L81.88 90.38L81.88 89.12ZM61.50 81.50L62.88 81.75L63.50 82.38L63.88 83.38L63.62 85.25L62.00 86.50L61.38 86.38L60.88 85.75L60.88 82.25ZM17.25 75.62L16.88 76.12L17.12 77.62L17.25 99.88L17.88 101.12L19.00 102.25L20.25 102.88L21.38 102.88L23.50 102.12L25.25 100.50L26.50 97.50L26.75 79.00L27.12 77.62L26.25 77.00L23.88 76.75L23.38 77.25L23.62 78.50L23.25 81.75L23.50 94.50L22.75 97.38L22.12 98.00L21.38 98.12L20.50 96.88L20.25 94.50L20.62 76.50L20.00 75.88ZM4.62 71.62L4.00 72.25L4.50 75.12L4.25 79.75L4.38 85.38L3.50 87.12L3.50 88.12L4.25 89.50L4.62 91.00L4.62 99.75L4.25 101.75L4.50 107.38L4.25 108.88L4.50 109.25L5.00 109.25L9.00 107.25L11.00 106.62L13.75 104.12L14.88 102.25L15.62 100.00L15.88 95.88L15.50 93.88L15.50 92.00L14.88 90.50L13.38 88.38L13.62 87.38L14.75 85.75L15.25 82.75L15.12 79.50L14.50 77.00L13.50 75.25L12.00 73.88L7.38 72.12ZM10.50 91.38L11.75 92.38L12.38 94.38L12.25 97.88L11.38 100.12L9.88 101.38L9.12 101.75L8.38 101.75L7.88 101.12L7.75 99.50L7.88 92.50L8.88 91.38ZM8.50 77.75L9.88 78.12L11.12 79.38L11.88 81.38L11.88 83.25L11.38 84.88L10.38 86.12L9.25 86.62L8.25 86.38L7.75 85.25L7.88 78.50ZM108.88 71.50L108.12 71.50L103.88 72.88L95.50 75.00L94.50 75.62L94.88 77.75L94.62 82.75L94.75 95.50L94.38 97.50L93.62 98.62L93.00 98.62L92.12 97.88L91.50 94.62L91.62 78.00L91.88 76.50L91.38 76.12L90.50 76.12L88.88 76.62L88.38 77.38L88.50 81.88L88.25 84.38L88.12 97.38L89.38 100.62L91.50 102.88L93.50 103.75L95.12 103.50L96.50 102.25L97.75 99.00L98.00 95.00L97.75 83.38L98.00 81.25L99.00 80.00L100.75 78.88L101.50 78.88L102.12 79.50L102.12 87.38L101.12 89.12L101.12 89.62L102.00 91.12L102.00 101.38L101.50 106.75L102.50 107.75L104.38 108.50L105.25 108.12L105.12 104.75L105.38 103.00L105.25 99.62L105.62 96.62L105.62 91.62L106.62 89.38L106.62 88.75L105.75 87.00L105.62 78.88L106.50 77.88L107.50 77.88L109.00 78.88L109.38 78.62L109.50 77.75L109.12 75.25L109.38 72.00ZM58.00 70.75L57.50 70.62L56.62 71.62L56.25 71.62L55.38 70.75L54.50 71.00L54.38 73.75L54.62 74.62L55.38 74.75L56.25 74.00L56.62 74.00L57.50 74.88L58.12 74.50L58.38 71.38ZM60.62 70.25L59.88 71.12L59.88 74.12L60.62 75.12L62.25 75.25L62.75 74.75L61.88 73.75L61.62 73.00L62.88 70.75L62.38 70.25ZM50.50 70.25L50.12 70.50L50.00 71.12L50.88 72.50L51.00 74.38L51.25 74.75L51.75 74.75L52.12 74.25L52.12 72.75L53.00 70.75L52.38 70.25ZM23.88 57.38L24.12 60.12L25.00 62.12L26.88 64.25L29.12 65.50L83.62 65.62L85.50 65.00L86.75 63.75L88.38 61.12L89.12 58.38L89.00 56.88L88.62 56.12L87.38 55.25L29.25 55.25L25.12 55.75L24.12 56.50ZM23.50 45.50L23.62 48.12L24.38 50.75L25.25 52.12L26.38 53.12L28.25 53.62L85.12 53.62L86.38 53.25L88.12 51.38L89.00 49.50L89.50 46.50L89.25 44.62L88.62 43.12L87.62 42.00L85.50 41.38L67.25 41.00L32.12 41.00L26.50 41.25L25.50 41.62L24.50 42.50ZM25.25 46.38L25.88 45.00L26.50 44.38L27.62 43.88L29.12 43.88L30.88 44.50L35.00 45.12L40.75 45.50L46.50 43.62L52.62 43.38L58.25 44.12L62.12 45.75L63.25 45.75L64.25 45.12L65.12 45.12L67.75 46.75L69.25 47.25L69.50 47.00L69.25 44.88L70.00 44.25L71.75 44.25L76.75 45.00L79.88 45.00L82.38 44.62L84.25 44.00L85.62 44.00L86.75 44.88L87.38 46.00L87.50 47.88L87.00 49.50L85.62 50.88L80.62 51.25L64.38 51.62L29.88 51.00L27.12 50.62L26.00 49.50L25.50 48.50ZM21.38 34.62L21.50 35.25L21.88 35.50L24.75 35.88L25.50 36.38L24.75 38.00L25.00 38.75L33.25 39.00L74.00 39.12L76.25 38.88L87.12 38.88L87.75 38.50L87.75 37.88L87.00 36.75L87.38 36.00L88.12 35.75L90.12 35.75L91.00 35.25L91.00 34.50L90.62 34.12L88.88 33.38L86.75 33.00L85.38 33.25L82.00 35.12L78.00 36.38L76.38 36.38L71.00 35.12L67.88 34.88L61.50 35.12L54.25 36.62L51.88 36.50L46.12 35.00L41.50 34.88L34.38 36.38L32.12 35.88L30.12 34.88L28.88 33.88L26.12 33.00L23.00 33.50L21.75 34.12ZM70.00 32.12L70.50 32.88L74.00 34.62L75.38 35.00L79.62 34.75L82.38 33.75L83.25 32.88L83.12 32.25L82.50 31.88L78.88 31.38L70.62 31.50ZM45.88 32.00L45.88 32.50L46.25 32.88L50.25 34.75L52.50 35.12L55.00 35.12L56.75 34.75L63.25 32.62L63.62 32.25L63.00 31.75L57.50 31.75L52.38 31.38L46.75 31.50ZM29.12 32.88L29.75 33.62L31.88 34.75L34.50 35.12L36.38 34.62L40.25 32.88L40.62 32.50L40.62 32.00L40.00 31.62L32.50 31.38L29.62 31.88L29.12 32.25ZM23.88 23.75L24.00 26.75L25.25 28.62L27.25 29.50L45.12 30.00L68.62 29.62L85.88 29.75L88.00 28.25L89.00 26.00L88.75 22.25L86.75 17.88L83.88 14.00L79.50 10.25L76.25 8.12L72.62 6.38L69.50 5.25L64.00 4.00L58.88 3.50L53.00 3.62L46.25 4.75L41.50 6.25L36.50 8.62L31.62 12.00L27.62 16.12L24.88 20.62ZM43.00 20.25L43.75 19.62L44.62 19.62L44.88 19.88L44.88 20.50L44.12 21.00L43.25 20.88ZM52.88 12.25L53.75 11.50L54.25 11.50L54.62 11.88L54.62 12.38L53.88 12.88L53.12 12.75Z"/></svg></a>
+    <span>© The Burgernaut · Almada</span>
+    <span class="credit"><span data-i18n="foot.credit">Site criado por</span> <a href="https://dev-rcosta.github.io/proposta/#burgernaut" target="_blank" rel="noopener">Ronald Costa</a></span>
+  </div>
+</footer>
+
+<div class="mbar" hidden><button type="button" class="js-open"><span class="l"><span class="count js-count">0</span><span data-i18n="cart.see">Ver pedido</span></span><span class="js-total">0,00 €</span></button></div>
+
+<div class="scrim js-close"></div>
+<aside class="drawer" aria-label="O meu pedido" aria-hidden="true">
+  <div class="d-head"><h2 data-i18n="cart.title">O meu pedido</h2><button class="x js-close" type="button" aria-label="Fechar">×</button></div>
+  <div class="d-body js-dbody"></div>
+  <div class="d-foot js-dfoot"></div>
+</aside>
+<div class="toast js-toast"></div>
+
+<script>
+const WHATSAPP = "351937299444"; // DEMO: WhatsApp do Ronald Costa. No site final: número da The Burgernaut.
+const IMG = k => `img/m-${k}.webp`;
+const MENU = [
+ {id:"burgers", pt:"Hambúrgueres", en:"Burgers", items:[
+  {id:"smash-burgernaut-triple", n:"Smash Burgernaut Triple", p:17.99, pt:"Pão brioche, triplo smash de carne fresca 100g, cheddar triplo, salada, pickles, tomate e cebola caramelizada com molhos especiais.", en:"Brioche bun, triple 100g fresh-ground smash patties, triple cheddar, lettuce, pickles, tomato and caramelised onion with special sauces."},
+  {id:"smash-cheese-triple", n:"Smash Cheese Triple", p:16.99, pt:"Pão brioche, triplo smash de 100g, cheddar, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, triple 100g smash patties, cheddar, onion, pickles, ketchup, mustard and mayo."},
+  {id:"burgernaut-double", n:"Burgernaut Double", p:16.99, pt:"Pão brioche, duplo hambúrguer gourmet de 150g, cheddar, pickles, alface, tomate e cebola caramelizada com molhos exclusivos.", en:"Brioche bun, double 150g gourmet patties, cheddar, pickles, lettuce, tomato and caramelised onion with signature sauces."},
+  {id:"bacon-supreme", n:"Bacon Supreme", p:15.99, pt:"Pão brioche, hambúrguer gourmet de 150g, cheddar, beef bacon, pickles, salada, tomate e cebola com molhos especiais.", en:"Brioche bun, 150g gourmet patty, cheddar, beef bacon, pickles, lettuce, tomato and onion with special sauces."},
+  {id:"cheeseburger-double", n:"Cheeseburger Double", p:15.50, pt:"Pão brioche, duplo hambúrguer gourmet de 150g, cheddar, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, double 150g gourmet patties, cheddar, onion, pickles, ketchup, mustard and mayo."},
+  {id:"smash-burgernaut-double", n:"Smash Burgernaut Double", p:14.99, top:1, pt:"Pão brioche, duplo smash de carne moída na hora 100g, cheddar duplo, salada, pickles, tomate e cebola caramelizada.", en:"Brioche bun, double 100g freshly ground smash patties, double cheddar, lettuce, pickles, tomato and caramelised onion."},
+  {id:"burgernaut", n:"Burgernaut", p:13.99, pt:"Pão brioche, hambúrguer gourmet de 150g, cheddar, pickles, salada, tomate e cebola caramelizada com molhos exclusivos.", en:"Brioche bun, 150g gourmet patty, cheddar, pickles, lettuce, tomato and caramelised onion with signature sauces."},
+  {id:"smash-cheese-double", n:"Smash Cheese Double", p:13.50, top:1, pt:"Pão brioche, duplo smash de 100g, cheddar, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, double 100g smash patties, cheddar, onion, pickles, ketchup, mustard and mayo."},
+  {id:"cheeseburger", n:"Cheeseburger", p:12.50, pt:"Pão brioche, hambúrguer gourmet de 150g, cheddar, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, 150g gourmet patty, cheddar, onion, pickles, ketchup, mustard and mayo."},
+  {id:"smash-ham-double", n:"Smash Ham Double", p:12.50, pt:"Pão brioche, duplo hambúrguer de carne moída, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, double ground-beef patties, onion, pickles, ketchup, mustard and mayo."},
+  {id:"ham-burger", n:"Hamburger", p:12.50, pt:"Pão brioche, hambúrguer gourmet de 150g, cebola, pickles, ketchup, mostarda e maionese.", en:"Brioche bun, 150g gourmet patty, onion, pickles, ketchup, mustard and mayo."}
+ ]},
+ {id:"chicken", pt:"Frango & Veggie", en:"Chicken & Veggie", items:[
+  {id:"spicy-chicken", n:"Spicy Fried Chicken Burger", p:12.99, top:1, pt:"Peito de frango panado com mix de temperos, salada, pickles, ketchup picante e maionese chipotle.", en:"Crispy chicken breast in a spice mix, lettuce, pickles, spicy ketchup and chipotle mayo."},
+  {id:"crispy-chicken", n:"Crispy Fried Chicken Burger", p:12.99, pt:"Peito de frango panado na hora, salada, pickles, tomate, maionese e maionese chipotle.", en:"Freshly breaded chicken breast, lettuce, pickles, tomato, mayo and chipotle mayo."},
+  {id:"chicken-katsu", n:"Chicken Katsu Burger", p:12.99, pt:"Peito de frango panado, repolho fresco, mostarda, maionese japonesa e barbecue.", en:"Breaded chicken breast, fresh shredded cabbage, mustard, Japanese mayo and barbecue."},
+  {id:"grilled-chicken", n:"Special Grilled Chicken Burger", p:12.50, pt:"Peito de frango grelhado com temperos fumados, salada, pickles, tomate, cebola, maionese e barbecue.", en:"Grilled chicken breast with smoky spices, lettuce, pickles, tomato, onion, mayo and barbecue."},
+  {id:"veggie", n:"Veggie Burger", p:12.99, pt:"Hambúrguer de vegetais frescos, cheddar, tomate, alface, cebola, pickles, maionese, mostarda e ketchup.", en:"Fresh vegetable patty, cheddar, tomato, lettuce, onion, pickles, mayo, mustard and ketchup."},
+  {id:"halloumi", n:"Halloumi Burger", p:12.50, pt:"Halloumi frito, tomate, alface, cebola e pickles com molho exclusivo.", en:"Fried halloumi, tomato, lettuce, onion and pickles with signature sauce."}
+ ]},
+ {id:"sides", pt:"Acompanhamentos", en:"Sides", items:[
+  {id:"honey-wings", n:"Honey BBQ Chicken Wings (5)", p:9.99, pt:"Asinhas de frango crocantes com molho barbecue e mel.", en:"Crispy chicken wings with honey barbecue sauce."},
+  {id:"spicy-wings", n:"Spicy Chicken Wings (5)", p:8.99, pt:"Frango fresco e suculento com panado picante, feito todos os dias.", en:"Fresh, juicy chicken in a spicy coating, made daily."},
+  {id:"caesar", n:"Classic Caesar Salad", p:7.99, pt:"Alface crocante, molho Caesar caseiro, croutons e parmesão.", en:"Crisp lettuce, homemade Caesar dressing, croutons and parmesan."},
+  {id:"nuggets", n:"Chicken Nuggets", p:5.99, noimg:1, pt:"Frango fresco panado na hora.", en:"Fresh chicken, breaded to order."},
+  {id:"fries", n:"Fries", p:3.50, noimg:1, pt:"Batatas fritas finas e estaladiças com tempero cajun.", en:"Thin, crispy fries with cajun seasoning."}
+ ]},
+ {id:"shakes", pt:"Milkshakes", en:"Milkshakes", items:[
+  {id:"shake-chocolate", n:"Chocolate Milkshake", p:6.99, pt:"Milkshake fresco de chocolate, 350 g.", en:"Fresh chocolate milkshake, 350 g."},
+  {id:"shake-oreo", n:"Oreo Milkshake", p:6.99, pt:"Milkshake fresco de Oreo, 350 g.", en:"Fresh Oreo milkshake, 350 g."},
+  {id:"shake-strawberry", n:"Strawberry Milkshake", p:6.99, pt:"Milkshake fresco de morango, 350 g.", en:"Fresh strawberry milkshake, 350 g."},
+  {id:"shake-vanilla", n:"Vanilla Milkshake", p:6.99, pt:"Milkshake fresco de baunilha, 350 g.", en:"Fresh vanilla milkshake, 350 g."},
+  {id:"shake-coffee", n:"Coffee Milkshake", p:6.99, pt:"Milkshake fresco de café, 350 g.", en:"Fresh coffee milkshake, 350 g."}
+ ]},
+ {id:"drinks", pt:"Bebidas", en:"Drinks", list:1, items:[
+  {id:"coke", n:"Coca-Cola", p:2.50, pt:"Lata 330 ml", en:"330 ml can"},
+  {id:"coke-zero", n:"Coca-Cola Zero", p:2.50, pt:"Lata 330 ml", en:"330 ml can"},
+  {id:"fanta", n:"Fanta", p:2.50, pt:"Lata 330 ml", en:"330 ml can"},
+  {id:"sprite", n:"Sprite", p:2.50, pt:"Lata 330 ml", en:"330 ml can"},
+  {id:"icetea", n:"Fuze Tea Manga-Ananás", p:2.50, pt:"330 ml", en:"Mango-pineapple, 330 ml"},
+  {id:"tonic", n:"Royal Bliss Tonic Water", p:2.50, pt:"Água tónica", en:"Tonic water"},
+  {id:"sparkling", n:"Água com gás", en_n:"Sparkling water", p:2.50, pt:"Água mineral gaseificada", en:"Sparkling mineral water"},
+  {id:"water", n:"Água", en_n:"Water", p:1.50, pt:"Garrafa 330 ml", en:"330 ml bottle"}
+ ]},
+ {id:"sauces", pt:"Molhos", en:"Sauces", list:1, items:[
+  {id:"mayo", n:"Mayo", p:0.99, pt:"Maionese", en:"Mayonnaise"},
+  {id:"garlic-mayo", n:"Garlic Mayo", p:0.99, pt:"Maionese de alho", en:"Garlic mayonnaise"},
+  {id:"chipotle-mayo", n:"Chipotle Mayo", p:0.99, pt:"Maionese de chipotle", en:"Chipotle mayonnaise"},
+  {id:"honey-mustard", n:"Honey Mustard", p:0.99, pt:"Mostarda com mel", en:"Honey mustard"},
+  {id:"bbq", n:"BBQ Sauce", p:0.99, pt:"Molho barbecue", en:"Barbecue sauce"},
+  {id:"piri", n:"Piri-Piri", p:0.70, pt:"Molho picante", en:"Hot sauce"},
+  {id:"ketchup", n:"Ketchup", p:0.70, pt:"Ketchup", en:"Ketchup"}
+ ]}
+];
+const ITEMS = {}; MENU.forEach(c=>c.items.forEach(i=>ITEMS[i.id]=i));
+
+const T = {
+ pt:{
+  "demo":"Demonstração criada por <b>Ronald Costa</b> para a The Burgernaut · fotografias do Instagram e da Glovo",
+  "nav.menu":"Menu","nav.about":"Sobre nós","nav.reviews":"Avaliações","nav.find":"Onde estamos",
+  "cart.btn":"O meu pedido","cart.see":"Ver pedido","cart.title":"O meu pedido",
+  "hero.eyebrow":"Cacilhas · Almada","hero.h1a":"Artesanal.","hero.h1b":"Qualidade.","hero.h1c":"Sabor.",
+  "hero.lead":"Smash burgers, frango crocante e milkshakes feitos na hora. Escolha no menu, peça para entrega ou take-away e o pedido chega-nos direto pelo WhatsApp.",
+  "hero.cta":"Fazer pedido","hero.apps":"Prefiro uma app","hero.google":"no Google · 260 avaliações","hero.modes":"Comer no local · Take-away · Entrega","hero.halal":"Certificado IHP",
+  "how.1t":"Escolha no menu","how.1p":"Adicione hambúrgueres, extras e bebidas ao pedido.",
+  "how.2t":"Entrega ou take-away","how.2p":"Indique a morada ou a hora a que passa a levantar.",
+  "how.3t":"Enviado pelo WhatsApp","how.3p":"O pedido chega-nos detalhado e confirmamos logo consigo.",
+  "menu.eyebrow":"O nosso menu","menu.h2":"Escolha o seu","menu.p":"Pão brioche, carne fresca moída na hora e molhos da casa. Toque em “Adicionar” e envie o pedido quando estiver pronto.",
+  "menu.note":"Demonstração com o menu e os preços publicados na Glovo. No site final, os preços são os da casa.",
+  "apps.h2":"Prefere pedir por uma app?","apps.p":"Também estamos na Uber Eats, na Glovo e na Bolt Food. Pedir aqui pelo site vai direto para nós, sem intermediários.",
+  "about.eyebrow":"Sobre nós","about.h2":"Feito na hora, em Cacilhas",
+  "about.p1":"A The Burgernaut é uma hamburgueria gourmet na Rua Cândido dos Reis, a dois passos do cais de Cacilhas. Hambúrgueres em pão brioche, frango panado na hora, batatas estaladiças com tempero cajun e milkshakes cremosos.",
+  "about.p2":"Tudo 100% Halal, certificado pelo Instituto Halal de Portugal. Venha comer connosco, leve para casa ou peça com entrega.",
+  "about.f1":"260 avaliações no Google","about.f2":"Halal certificado","about.f3":"Local, take-away e entrega",
+  "rev.eyebrow":"Avaliações","rev.h2":"O que dizem de nós","rev.small":"260 avaliações no Google","rev.c":"Cliente · Google",
+  "rev.q1":"“Os hambúrgueres são excelentes, suculentos e saborosos. O atendimento é impecável.”",
+  "rev.q2":"“O espaço é acolhedor, o staff é super simpático e a comida é top.”",
+  "rev.q3":"“A carne estava suculenta, o pão macio e os ingredientes frescos.”",
+  "ig.follow":"Seguir no Instagram",
+  "find.eyebrow":"Onde estamos","find.h2":"Venha provar","find.tel":"Chamada para rede móvel nacional","find.modes":"Comer no local · Take-away · Entrega","find.halal":"100% Halal","find.maps":"Abrir no Google Maps",
+  "foot.credit":"Site criado por",
+  add:"Adicionar", top:"Mais pedido", added:"adicionado ao pedido", empty1:"O pedido está vazio", empty2:"Escolha no menu o que lhe apetece.", browse:"Ver o menu",
+  how:"Como quer receber?", delivery:"Entrega", deliveryS:"Levamos a sua casa", takeaway:"Take-away", takeawayS:"Levanta no restaurante",
+  data:"Os seus dados", name:"Nome", address:"Morada", addressPh:"Rua, número, andar", zip:"Código postal", when:"Para quando?", asap:"O mais rápido possível", at:"Às",
+  pay:"Pagamento", cash:"Dinheiro", mbway:"MB WAY", card:"Cartão", notes:"Notas (opcional)", notesPh:"Ex.: sem cebola, molho à parte…",
+  subtotal:"Subtotal", feeShort:"entrega", fee:"Taxa de entrega", feeV:"a confirmar", total:"Total", send:"Enviar pedido pelo WhatsApp", preview:"Mensagem que será enviada",
+  demoNote:"Demonstração: nesta versão o pedido é enviado para o WhatsApp do Ronald Costa. No site final, chega diretamente à The Burgernaut.",
+  fill:"Preencha os campos em falta", items:n=>n===1?"1 item":n+" itens",
+  msg:{title:"NOVO PEDIDO · The Burgernaut", mode:"Modo", name:"Nome", addr:"Morada", when:"Para", pay:"Pagamento", notes:"Notas", total:"Total", feeNote:"(taxa de entrega a confirmar)", thanks:"Enviado pelo site theburgernaut"}
+ },
+ en:{
+  "demo":"Demo built by <b>Ronald Costa</b> for The Burgernaut · photos from Instagram and Glovo",
+  "nav.menu":"Menu","nav.about":"About us","nav.reviews":"Reviews","nav.find":"Find us",
+  "cart.btn":"My order","cart.see":"View order","cart.title":"My order",
+  "hero.eyebrow":"Cacilhas · Almada","hero.h1a":"Craft.","hero.h1b":"Quality.","hero.h1c":"Flavour.",
+  "hero.lead":"Smash burgers, crispy chicken and shakes made to order. Pick from the menu, choose delivery or takeaway, and your order reaches us straight on WhatsApp.",
+  "hero.cta":"Order now","hero.apps":"I prefer an app","hero.google":"on Google · 260 reviews","hero.modes":"Dine in · Takeaway · Delivery","hero.halal":"IHP certified",
+  "how.1t":"Pick from the menu","how.1p":"Add burgers, sides and drinks to your order.",
+  "how.2t":"Delivery or takeaway","how.2p":"Tell us your address or when you'll pick it up.",
+  "how.3t":"Sent via WhatsApp","how.3p":"Your order reaches us in full detail and we confirm right away.",
+  "menu.eyebrow":"Our menu","menu.h2":"Pick yours","menu.p":"Brioche buns, freshly ground beef and house sauces. Tap “Add” and send your order when you're ready.",
+  "menu.note":"Demo using the menu and prices published on Glovo. The final site will use the restaurant's own prices.",
+  "apps.h2":"Prefer to order through an app?","apps.p":"You'll also find us on Uber Eats, Glovo and Bolt Food. Ordering here on the website goes straight to us, no middleman.",
+  "about.eyebrow":"About us","about.h2":"Made fresh, in Cacilhas",
+  "about.p1":"The Burgernaut is a gourmet burger spot on Rua Cândido dos Reis, a short walk from the Cacilhas ferry. Brioche burgers, chicken breaded to order, crispy cajun fries and creamy milkshakes.",
+  "about.p2":"Everything is 100% Halal, certified by the Instituto Halal de Portugal. Eat in, take it home or have it delivered.",
+  "about.f1":"260 Google reviews","about.f2":"Certified Halal","about.f3":"Dine in, takeaway, delivery",
+  "rev.eyebrow":"Reviews","rev.h2":"What people say","rev.small":"260 reviews on Google","rev.c":"Customer · Google",
+  "rev.q1":"“The burgers are excellent, juicy and full of flavour. The service is spot on.”",
+  "rev.q2":"“Cosy place, super friendly staff and top food.”",
+  "rev.q3":"“The meat was juicy, the bun soft and the ingredients fresh.”",
+  "ig.follow":"Follow on Instagram",
+  "find.eyebrow":"Find us","find.h2":"Come and taste","find.tel":"Call to a national mobile number","find.modes":"Dine in · Takeaway · Delivery","find.halal":"100% Halal","find.maps":"Open in Google Maps",
+  "foot.credit":"Website by",
+  add:"Add", top:"Top seller", added:"added to your order", empty1:"Your order is empty", empty2:"Pick something tasty from the menu.", browse:"See the menu",
+  how:"How would you like it?", delivery:"Delivery", deliveryS:"We bring it to you", takeaway:"Takeaway", takeawayS:"Pick up at the restaurant",
+  data:"Your details", name:"Name", address:"Address", addressPh:"Street, number, floor", zip:"Postcode", when:"When?", asap:"As soon as possible", at:"At",
+  pay:"Payment", cash:"Cash", mbway:"MB WAY", card:"Card", notes:"Notes (optional)", notesPh:"E.g. no onion, sauce on the side…",
+  subtotal:"Subtotal", feeShort:"delivery", fee:"Delivery fee", feeV:"to be confirmed", total:"Total", send:"Send order via WhatsApp", preview:"Message that will be sent",
+  demoNote:"Demo: in this version the order goes to Ronald Costa's WhatsApp. On the final site it goes straight to The Burgernaut.",
+  fill:"Please fill in the missing fields", items:n=>n===1?"1 item":n+" items",
+  msg:{title:"NEW ORDER · The Burgernaut", mode:"Type", name:"Name", addr:"Address", when:"For", pay:"Payment", notes:"Notes", total:"Total", feeNote:"(delivery fee to be confirmed)", thanks:"Sent from the theburgernaut website"}
+ }
+};
+
+/* ---------- state ---------- */
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const qs = new URLSearchParams(location.search);
+let lang = qs.get("lang") || store.get("bn-lang", (navigator.language||"pt").toLowerCase().startsWith("pt")?"pt":"en");
+if(!T[lang]) lang="pt";
+let cart = store.get("bn-cart", {});
+Object.keys(cart).forEach(k=>{if(!ITEMS[k]||!(cart[k]>0)) delete cart[k]});
+let form = Object.assign({mode:"delivery", name:"", address:"", zip:"", when:"asap", time:"", pay:"mbway", notes:""}, store.get("bn-form",{}));
+
+const $ = s=>document.querySelector(s), $$ = s=>[...document.querySelectorAll(s)];
+const t = k=>T[lang][k];
+const eur = v=>(lang==="pt"? v.toFixed(2).replace(".",",")+" €" : "€"+v.toFixed(2));
+const nameOf = i => (lang==="en" && i.en_n) ? i.en_n : i.n;
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const count = ()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const subtotal = ()=>Object.entries(cart).reduce((s,[k,q])=>s+ITEMS[k].p*q,0);
+const save = ()=>{store.set("bn-cart",cart);store.set("bn-form",form)};
+
+/* ---------- menu render ---------- */
+const PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+function ctrl(id){
+  const q=cart[id]||0;
+  return q ? `<span class="stepper"><button type="button" data-dec="${id}" aria-label="-">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="+">+</button></span>`
+           : `<button class="add" type="button" data-inc="${id}">${PLUS}${t("add")}</button>`;
+}
+function renderMenu(){
+  $(".js-tabs").innerHTML = MENU.map((c,i)=>`<button class="tab" role="tab" type="button" aria-selected="${i===0}" data-cat="${c.id}">${c[lang]}</button>`).join("");
+  $(".js-menu").innerHTML = MENU.map(c=>{
+    const cards = c.list ? `<div class="list">${c.items.map(i=>`<div class="row"><div class="t"><h4>${esc(nameOf(i))}</h4><p>${esc(i[lang])}</p></div><span class="price">${eur(i.p)}</span><span class="c" data-ctrl="${i.id}">${ctrl(i.id)}</span></div>`).join("")}</div>`
+    : `<div class="grid">${c.items.filter(i=>!i.noimg).map(i=>`<article class="item"><div class="ph"><img src="${IMG(i.id)}" alt="${esc(i.n)}" loading="lazy" width="520" height="520">${i.top?`<span class="tag">${t("top")}</span>`:""}</div><div class="body"><h4>${esc(nameOf(i))}</h4><p class="desc">${esc(i[lang])}</p><div class="foot"><span class="price">${eur(i.p)}</span><span class="c" data-ctrl="${i.id}">${ctrl(i.id)}</span></div></div></article>`).join("")}</div>`
+      + (c.items.some(i=>i.noimg) ? `<div class="list" style="margin-top:14px">${c.items.filter(i=>i.noimg).map(i=>`<div class="row"><div class="t"><h4>${esc(nameOf(i))}</h4><p>${esc(i[lang])}</p></div><span class="price">${eur(i.p)}</span><span class="c" data-ctrl="${i.id}">${ctrl(i.id)}</span></div>`).join("")}</div>` : "");
+    return `<div class="cat" id="cat-${c.id}"><h3>${c[lang]}</h3>${cards}</div>`;
+  }).join("");
+  observeCats();
+}
+function refreshCtrls(){ $$("[data-ctrl]").forEach(el=>el.innerHTML=ctrl(el.dataset.ctrl)); }
+
+/* ---------- cart ---------- */
+function renderBadges(){
+  const n=count();
+  $$(".js-count").forEach(e=>e.textContent=n);
+  $(".js-total").textContent=eur(subtotal());
+  $(".mbar").hidden = n===0;
+}
+function renderDrawer(){
+  const body=$(".js-dbody"), foot=$(".js-dfoot");
+  if(!count()){
+    body.innerHTML=`<div class="empty"><b>${t("empty1")}</b>${t("empty2")}</div>`;
+    foot.innerHTML=`<a class="btn btn-gold js-close" href="#menu">${t("browse")}</a>`;
+    return;
+  }
+  const lines=Object.entries(cart).map(([k,q])=>{const i=ITEMS[k];const has=!i.noimg&&!MENU.find(c=>c.items.includes(i)).list;
+    return `<div class="line">${has?`<img src="${IMG(k)}" alt="">`:`<span class="ph0">${esc(i.n[0])}</span>`}<div><h4>${esc(nameOf(i))}</h4><span class="p">${q} × ${eur(i.p)}</span></div><span class="stepper"><button type="button" data-dec="${k}" aria-label="-">−</button><span>${q}</span><button type="button" data-inc="${k}" aria-label="+">+</button></span></div>`}).join("");
+  const d=form.mode==="delivery";
+  body.innerHTML=`
+    <div class="lines">${lines}</div>
+    <div><div class="field-title">${t("how")}</div>
+      <div class="seg">
+        <button type="button" data-mode="delivery" aria-pressed="${d}"><b>🛵 ${t("delivery")}</b><span>${t("deliveryS")}</span></button>
+        <button type="button" data-mode="takeaway" aria-pressed="${!d}"><b>🥡 ${t("takeaway")}</b><span>${t("takeawayS")}</span></button>
+      </div></div>
+    <div><div class="field-title">${t("data")}</div>
+      <div class="fields">
+        <label>${t("name")}<input name="name" autocomplete="name" value="${esc(form.name)}"></label>
+        ${d?`<label>${t("address")}<input name="address" autocomplete="street-address" placeholder="${t("addressPh")}" value="${esc(form.address)}"></label>
+        <label>${t("zip")}<input name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="2800-000" value="${esc(form.zip)}"></label>`:""}
+        <label>${t("when")}<select name="when"><option value="asap" ${form.when==="asap"?"selected":""}>${t("asap")}</option><option value="time" ${form.when==="time"?"selected":""}>${t("at")}…</option></select></label>
+        <label class="js-time" ${form.when==="time"?"":"hidden"}>${t("at")}<input name="time" type="time" value="${esc(form.time)}"></label>
+        </div>
+      </div></div>
+    <div><div class="field-title">${t("pay")}</div>
+      <div class="seg three">
+        ${["mbway","card","cash"].map(p=>`<button type="button" data-pay="${p}" aria-pressed="${form.pay===p}">${t(p)}</button>`).join("")}
+      </div></div>
+    <div class="fields"><label>${t("notes")}<textarea name="notes" placeholder="${t("notesPh")}">${esc(form.notes)}</textarea></label></div>
+    <div class="totals">
+      <div><span>${t("subtotal")}</span><span>${eur(subtotal())}</span></div>
+      ${d?`<div class="muted"><span>${t("fee")}</span><span>${t("feeV")}</span></div>`:""}
+      <div class="grand"><span>${t("total")}</span><span>${eur(subtotal())}${d?" + "+t("feeShort"):""}</span></div>
+    </div>
+    <details><summary class="field-title" style="cursor:pointer;margin:0">${t("preview")}</summary><div class="preview js-preview" style="margin-top:10px"></div></details>`;
+  foot.innerHTML=`<button type="button" class="btn btn-wa js-send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>${t("send")} · ${eur(subtotal())}</button><p class="demo-note">${t("demoNote")}</p>`;
+  updatePreview();
+}
+function buildMessage(){
+  const m=T[lang].msg, d=form.mode==="delivery", L=[];
+  L.push(`🍔 *${m.title}*`,"");
+  Object.entries(cart).forEach(([k,q])=>{const i=ITEMS[k]; L.push(`${q}× ${nameOf(i)} — ${eur(i.p*q)}`)});
+  L.push("", `*${m.total}: ${eur(subtotal())}*${d?" "+m.feeNote:""}`, "");
+  L.push(`${d?"🛵":"🥡"} *${m.mode}:* ${d?t("delivery"):t("takeaway")}`);
+  L.push(`👤 *${m.name}:* ${form.name.trim()}`);
+  if(d) L.push(`📍 *${m.addr}:* ${form.address.trim()}${form.zip.trim()?", "+form.zip.trim():""}`);
+  L.push(`🕒 *${m.when}:* ${form.when==="asap"?t("asap"):(form.time||"—")}`);
+  L.push(`💳 *${m.pay}:* ${t(form.pay)}`);
+  if(form.notes.trim()) L.push(`📝 *${m.notes}:* ${form.notes.trim()}`);
+  return L.join("\n");
+}
+function updatePreview(){ const p=$(".js-preview"); if(p) p.textContent=buildMessage(); }
+function openDrawer(){ $(".js-toast").classList.remove("show"); renderDrawer(); document.body.classList.add("open"); $(".drawer").setAttribute("aria-hidden","false"); }
+function closeDrawer(){ document.body.classList.remove("open"); $(".drawer").setAttribute("aria-hidden","true"); }
+let toastT; function toast(s){const el=$(".js-toast"); el.textContent=s; el.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove("show"),1600)}
+
+function change(id,delta){
+  cart[id]=(cart[id]||0)+delta; if(cart[id]<=0) delete cart[id];
+  save(); renderBadges(); refreshCtrls();
+  if(document.body.classList.contains("open")) renderDrawer();
+  if(delta>0 && !document.body.classList.contains("open")) toast(`${nameOf(ITEMS[id])} ${t("added")}`);
+}
+
+document.addEventListener("click",e=>{
+  const inc=e.target.closest("[data-inc]"), dec=e.target.closest("[data-dec]");
+  if(inc){change(inc.dataset.inc,1);return}
+  if(dec){change(dec.dataset.dec,-1);return}
+  if(e.target.closest(".js-open")){openDrawer();return}
+  if(e.target.closest(".js-close")){closeDrawer();return}
+  const mode=e.target.closest("[data-mode]"); if(mode){form.mode=mode.dataset.mode;save();renderDrawer();return}
+  const pay=e.target.closest("[data-pay]"); if(pay){form.pay=pay.dataset.pay;save();renderDrawer();return}
+  const tab=e.target.closest("[data-cat]"); if(tab){document.getElementById("cat-"+tab.dataset.cat).scrollIntoView({behavior:"smooth"});return}
+  const lb=e.target.closest("[data-lang]"); if(lb){setLang(lb.dataset.lang);return}
+  if(e.target.closest(".js-send")) send();
+});
+document.addEventListener("input",e=>{
+  const n=e.target.name; if(!n||!(n in form)) return;
+  form[n]=e.target.value; e.target.classList.remove("err"); save();
+  if(n==="when"){ const tl=$(".js-time"); if(tl) tl.hidden=form.when!=="time"; }
+  updatePreview();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+
+function send(){
+  const need=["name"]; if(form.mode==="delivery") need.push("address"); if(form.when==="time") need.push("time");
+  const miss=need.filter(k=>!String(form[k]).trim());
+  if(miss.length){ miss.forEach(k=>{const el=document.querySelector(`[name="${k}"]`); if(el) el.classList.add("err")}); const f=document.querySelector(`[name="${miss[0]}"]`); if(f) f.focus(); toast(t("fill")); return; }
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(buildMessage())}`,"_blank","noopener");
+}
+
+/* ---------- tabs follow scroll ---------- */
+let io;
+function observeCats(){
+  if(io) io.disconnect();
+  io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id.slice(4);$$(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.cat===id));const a=$(`.tab[data-cat="${id}"]`);if(a)a.scrollIntoView({block:"nearest",inline:"center",behavior:"smooth"})}})},{rootMargin:"-45% 0px -50% 0px"});
+  $$(".cat").forEach(c=>io.observe(c));
+}
+
+/* ---------- i18n ---------- */
+function setLang(l){
+  lang=l; store.set("bn-lang",l); document.documentElement.lang=l;
+  $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  $$("[data-i18n]").forEach(el=>{const v=T[l][el.dataset.i18n]; if(v!=null) el.innerHTML=v});
+  renderMenu(); renderBadges();
+  if(document.body.classList.contains("open")) renderDrawer();
+}
+setLang(lang);
+</script>
+</body>
+</html>
