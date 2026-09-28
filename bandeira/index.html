@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Barbearia Bandeira · Demonstração</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Yellowtail&display=swap">
+<style>
+:root{
+  --cream:#F4EEE3; --paper:#FBF8F2; --ink:#16181D; --muted:#5E5A52; --line:#DDD3C3;
+  --navy:#1E3355; --navy-2:#162640; --red:#B4232C; --brass:#A9824A;
+  --serif:"DM Serif Display",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --script:"Yellowtail","Brush Script MT",cursive;
+  --booking:"";
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0}
+.pole{height:6px;background:repeating-linear-gradient(-45deg,var(--red) 0 12px,var(--paper) 12px 24px,var(--navy) 24px 36px,var(--paper) 36px 48px)}
+
+/* demo notice */
+.demo-bar{background:var(--ink);color:#E9E2D4;font-size:12.5px;letter-spacing:.02em;text-align:center;padding:8px 16px}
+.demo-bar b{color:#fff}
+
+/* header */
+header.site{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--cream) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-pole{width:14px;height:42px;border-radius:7px;background:repeating-linear-gradient(-35deg,var(--red) 0 6px,#fff 6px 12px,var(--navy) 12px 18px,#fff 18px 24px);box-shadow:inset 0 0 0 1.5px var(--ink);position:relative}
+.logo-pole::before,.logo-pole::after{content:"";position:absolute;left:-3px;right:-3px;height:6px;border-radius:3px;background:var(--brass)}
+.logo-pole::before{top:-5px}.logo-pole::after{bottom:-5px}
+.logo-text{display:grid;line-height:1}
+.logo-text b{font:400 30px/1 var(--script);color:var(--navy)}
+.logo-text span{font:700 9.5px var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.links{display:flex;gap:26px;font-weight:600;font-size:15px}
+.links a:hover{color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px var(--sans);padding:14px 22px;border-radius:999px;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.btn.primary{background:var(--red);color:#fff;box-shadow:0 10px 24px -12px var(--red)}
+.btn.primary:hover{background:#9c1c24}
+.btn.ghost{border:1.5px solid var(--ink);color:var(--ink)}
+.btn.small{padding:10px 18px;font-size:14px}
+
+/* hero */
+.hero{padding-block:56px 72px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.eyebrow{font:800 12px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--red)}
+.hero h1{font-size:clamp(46px,7vw,86px);margin-top:18px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--navy)}
+.hero .lead{font-size:19px;color:var(--muted);max-width:44ch;margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.rating{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 16px;border-radius:14px;background:var(--paper);border:1px solid var(--line);font-size:14px}
+.rating .stars{color:#E0A11B;letter-spacing:2px;font-size:15px}
+.rating b{font-size:16px}
+.arch{position:relative;aspect-ratio:3/4;max-width:460px;justify-self:end;width:100%}
+.arch img{width:100%;height:100%;object-fit:cover;border-radius:240px 240px 18px 18px;box-shadow:0 30px 60px -30px #0008}
+.arch::before{content:"";position:absolute;inset:-14px -14px auto auto;width:100%;height:100%;border:1.5px solid var(--brass);border-radius:240px 240px 18px 18px;z-index:-1}
+.since{position:absolute;left:-28px;bottom:36px;background:var(--navy);color:#fff;border-radius:16px;padding:14px 18px;display:grid;box-shadow:0 18px 40px -18px #0009}
+.since b{font:400 34px/1 var(--serif)}
+.since span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+
+/* sections */
+section{scroll-margin-top:80px}
+.sec{padding-block:84px}
+.sec-head{display:grid;gap:12px;max-width:640px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(34px,4.6vw,52px)}
+.sec-head p{color:var(--muted)}
+.dark{background:var(--navy);color:#F2ECE1}
+.dark .sec-head p{color:#C3CBDA}
+.dark .eyebrow{color:#F0B9BD}.dark .eyebrow::before{background:#F0B9BD}
+
+/* barbers */
+.barbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.barber{background:var(--navy-2);border:1px solid #2B4169;border-radius:22px;padding:26px;display:grid;gap:16px;transition:transform .25s ease,border-color .25s ease}
+.barber:hover{transform:translateY(-4px);border-color:var(--brass)}
+.mono{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--red),#7E1820);box-shadow:0 0 0 4px var(--navy-2),0 0 0 5.5px var(--brass)}
+.mono svg{width:40px;height:40px}
+.barber h3{font-size:28px;color:#fff}
+.barber p{color:#C3CBDA;font-size:15px}
+.barber .note{font-size:12px;color:#8E9BB5;font-style:italic}
+.barber .btn{justify-self:start;background:#fff;color:var(--navy)}
+.barber .btn:hover{background:var(--cream)}
+
+/* services: menu board */
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.board{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px 30px}
+.board h3{font-size:26px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.board h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.item{display:flex;align-items:baseline;gap:10px;padding:9px 0;font-size:16px}
+.item .dots{flex:1;border-bottom:1.5px dotted #BFB4A2;transform:translateY(-4px)}
+.item .price{font:600 17px var(--sans);font-variant-numeric:tabular-nums;color:var(--navy)}
+.item small{display:block;color:var(--muted);font-size:13px}
+.menu-foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--ink);color:#EDE6D8;border-radius:22px;padding:22px 28px}
+.menu-foot p{font-size:15px}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.gallery img{aspect-ratio:1;object-fit:cover;border-radius:16px;filter:saturate(.95);transition:transform .35s ease}
+.gallery img:hover{transform:scale(1.03)}
+.g-note{margin-top:14px;font-size:13px;color:var(--muted);font-style:italic}
+
+/* where */
+.where{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:30px;display:grid;gap:14px;align-content:start}
+.card h3{font-size:30px}
+.card .row{display:flex;gap:12px;align-items:flex-start;color:var(--muted)}
+.card .row b{color:var(--ink);display:block}
+.map-card{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border-radius:22px;padding:30px;display:grid;align-content:space-between;gap:24px;position:relative;overflow:hidden}
+.map-card::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff10 1px,transparent 1px),linear-gradient(90deg,#ffffff10 1px,transparent 1px);background-size:34px 34px}
+.map-card>*{position:relative}
+.pin{width:54px;height:54px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--red);display:grid;place-items:center;box-shadow:0 12px 24px -10px #000}
+.pin::after{content:"";width:18px;height:18px;border-radius:50%;background:#fff}
+.map-card h3{font-size:30px;color:#fff}
+.map-card p{color:#C3CBDA}
+.map-card .btn{background:#fff;color:var(--navy);justify-self:start}
+
+/* footer */
+footer{background:var(--ink);color:#BDB5A6;padding-block:40px 110px;font-size:14px}
+.f-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+footer .logo-text b{color:#fff}
+footer .logo-text span{color:#8C8576}
+.f-links{display:flex;gap:20px}
+.f-links a:hover{color:#fff}
+.credit{margin-top:26px;border-top:1px solid #2C2F36;padding-top:16px;text-align:center;font-size:12px}
+.credit b{color:#E4DCCB}
+
+/* mobile cta */
+.m-cta{display:none}
+
+@media (max-width:900px){
+  .links{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .arch{justify-self:center;max-width:380px}
+  .since{left:-10px}
+  .barbers{grid-template-columns:1fr}
+  .menu{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gallery img:nth-child(n+4){display:none}
+  .where{grid-template-columns:1fr}
+  .nav .btn{display:none}
+  .m-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--cream) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .m-cta .btn{width:100%}
+}
+@media (max-width:420px){.hero h1{font-size:44px}.board{padding:22px}.sec{padding-block:64px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<div class="demo-bar">Demonstração criada por <b>Ronald Costa</b> para a Barbearia Bandeira · imagens ilustrativas</div>
+<div class="pole" aria-hidden="true"></div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Barbearia Bandeira, início"><span class="logo-pole" aria-hidden="true"></span><span class="logo-text"><b>Barbearia Bandeira</b><span>Clássica &amp; Moderna</span></span></a>
+    <nav class="links"><a href="#servicos">Serviços</a><a href="#barbeiros">Barbeiros</a><a href="#trabalhos">Trabalhos</a><a href="#onde">Onde estamos</a></nav>
+    <a class="btn primary small js-book" target="_blank" rel="noopener">Marcar agora</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Seixal · desde 2016</div>
+        <h1>Clássica no ofício. <em>Moderna</em> no corte.</h1>
+        <p class="lead">Três barbeiros, uma cadeira à sua espera e o corte que pediu. Escolha o serviço, o barbeiro e a hora em menos de um minuto.</p>
+        <div class="ctas"><a class="btn primary js-book" target="_blank" rel="noopener">Marcar agora →</a><a class="btn ghost" href="#servicos">Ver serviços e preços</a></div>
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span><b>4,9</b><span>no Google · 99 avaliações</span></div>
+      </div>
+      <div class="arch">
+        <img src="img/hero.webp" alt="Barbeiro a cortar o cabelo de um cliente com tesoura">
+        <div class="since"><b>2016</b><span>no Seixal</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dark" id="barbeiros">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">A equipa</div><h2>Escolha quem lhe corta o cabelo.</h2><p>Marque diretamente com o barbeiro que já conhece, ou com o primeiro disponível.</p></div>
+      <div class="barbers">
+        <article class="barber"><div class="mono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1.2-4 4.2-6 7.5-6s6.3 2 7.5 6"/></svg></div><div><h3>Leo Soares</h3><p>Barbeiro na Barbearia Bandeira</p></div><p class="note">Aqui entra a fotografia real do Leo e a sua especialidade.</p><a class="btn small js-book" target="_blank" rel="noopener">Marcar com o Leo</a></article>
+        <article class="barber"><div class="mono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1.2-4 4.2-6 7.5-6s6.3 2 7.5 6"/></svg></div><div><h3>Lucas Aguiar</h3><p>Barbeiro na Barbearia Bandeira</p></div><p class="note">Aqui entra a fotografia real do Lucas e a sua especialidade.</p><a class="btn small js-book" target="_blank" rel="noopener">Marcar com o Lucas</a></article>
+        <article class="barber"><div class="mono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1.2-4 4.2-6 7.5-6s6.3 2 7.5 6"/></svg></div><div><h3>Ludmilo Aguiar</h3><p>Barbeiro na Barbearia Bandeira</p></div><p class="note">Aqui entra a fotografia real do Ludmilo e a sua especialidade.</p><a class="btn small js-book" target="_blank" rel="noopener">Marcar com o Ludmilo</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="servicos">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Serviços e preços</div><h2>Sem surpresas no fim.</h2><p>Os preços que já pratica, organizados para o cliente decidir antes de chegar.</p></div>
+      <div class="menu">
+        <div class="board"><h3>Cabelo</h3>
+          <div class="item"><span>Corte Clássico Simples</span><span class="dots"></span><span class="price">12,50 €</span></div>
+          <div class="item"><span>Corte Elaborado com Degradê</span><span class="dots"></span><span class="price">13,00 €</span></div>
+          <div class="item"><span>Corte Infantil <small>até 11 anos</small></span><span class="dots"></span><span class="price">12,00 €</span></div>
+          <div class="item"><span>Lavagem + Penteado</span><span class="dots"></span><span class="price">4,50 €</span></div>
+          <div class="item"><span>Coloração ou Descoloração</span><span class="dots"></span><span class="price">desde 25 €</span></div>
+        </div>
+        <div class="board"><h3>Barba &amp; Combos</h3>
+          <div class="item"><span>Corte + Barba Simples</span><span class="dots"></span><span class="price">20,00 €</span></div>
+          <div class="item"><span>Corte + Barba + Sobrancelhas</span><span class="dots"></span><span class="price">22,00 €</span></div>
+          <div class="item"><span>Barboterapia</span><span class="dots"></span><span class="price">11,00 €</span></div>
+          <div class="item"><span>Coloração na Barba</span><span class="dots"></span><span class="price">15,00 €</span></div>
+          <div class="item"><span>Contornos Cabelo + Barba + Sobrancelhas</span><span class="dots"></span><span class="price">12,00 €</span></div>
+        </div>
+      </div>
+      <div class="menu-foot"><p>Todos os serviços e horários livres estão na agenda online.</p><a class="btn primary small js-book" target="_blank" rel="noopener">Ver horários disponíveis →</a></div>
+    </div>
+  </section>
+
+  <section class="sec" id="trabalhos" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Trabalhos</div><h2>O corte fala por si.</h2></div>
+      <div class="gallery"><img src="img/g1.webp" alt=""><img src="img/g2.webp" alt=""><img src="img/g3.webp" alt=""><img src="img/g4.webp" alt=""><img src="img/g5.webp" alt=""></div>
+      <p class="g-note">No site final, esta galeria mostra os cortes reais da Barbearia Bandeira, ligada ao Instagram.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="onde" style="padding-top:0">
+    <div class="wrap where">
+      <div class="card">
+        <div class="eyebrow">Onde estamos</div>
+        <h3>Venha conhecer-nos.</h3>
+        <div class="row"><span aria-hidden="true">📍</span><div><b>Av. 1.º de Dezembro de 1640, 527</b>Seixal</div></div>
+        <div class="row"><span aria-hidden="true">📅</span><div><b>Marcações online 24 horas</b>Escolha o barbeiro e a hora que lhe dá jeito.</div></div>
+        <div class="row"><span aria-hidden="true">📸</span><div><b>@barbershopbandeira</b>Siga os nossos cortes no Instagram.</div></div>
+      </div>
+      <div class="map-card">
+        <span class="pin" aria-hidden="true"></span>
+        <div><h3>Barbearia Bandeira</h3><p>Barbearia clássica e moderna no Seixal, desde 2016.</p></div>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Barbearia+Bandeira+Av.+1%C2%BA+de+Dezembro+de+1640+527+Seixal" target="_blank" rel="noopener">Abrir no Google Maps ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="logo"><span class="logo-pole" aria-hidden="true"></span><span class="logo-text"><b>Barbearia Bandeira</b><span>Clássica &amp; Moderna · Seixal</span></span></div>
+      <div class="f-links"><a href="https://www.instagram.com/barbershopbandeira/" target="_blank" rel="noopener">Instagram</a><a class="js-book" target="_blank" rel="noopener">Marcações</a><a href="#top">Voltar ao topo ↑</a></div>
+    </div>
+    <p class="credit">Demonstração criada por <b>Ronald Costa</b> · Desenvolvimento Web</p>
+  </div>
+</footer>
+
+<div class="m-cta"><a class="btn primary js-book" target="_blank" rel="noopener">Marcar agora</a></div>
+
+<script>
+const BOOKING="https://book.gadgetprelude.com/?tenant=barbeariabandeira";
+document.querySelectorAll(".js-book").forEach(a=>a.href=BOOKING);
+</script>
+
+</body>
+</html>
